@@ -1,6 +1,6 @@
-package yaro.qa.rangiffler.data.repository;
+package yaro.qa.rangifflerauth.data.repository;
 
-import yaro.qa.rangiffler.data.UserEntity;
+import yaro.qa.rangifflerauth.data.UserEntity;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import org.springframework.data.jpa.repository.JpaRepository;

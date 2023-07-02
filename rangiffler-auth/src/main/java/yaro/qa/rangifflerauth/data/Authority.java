@@ -1,4 +1,4 @@
-package yaro.qa.rangiffler.data;
+package yaro.qa.rangifflerauth.data;
 
 public enum Authority {
     read, write

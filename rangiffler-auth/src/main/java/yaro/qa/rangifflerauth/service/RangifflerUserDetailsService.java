@@ -1,8 +1,8 @@
-package yaro.qa.rangiffler.service;
+package yaro.qa.rangifflerauth.service;
 
-import yaro.qa.rangiffler.data.UserEntity;
-import yaro.qa.rangiffler.data.repository.UserRepository;
-import yaro.qa.rangiffler.domain.RangifflerUserPrincipal;
+import yaro.qa.rangifflerauth.data.UserEntity;
+import yaro.qa.rangifflerauth.data.repository.UserRepository;
+import yaro.qa.rangifflerauth.domain.RangifflerUserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

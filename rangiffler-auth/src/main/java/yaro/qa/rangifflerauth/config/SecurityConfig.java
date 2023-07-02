@@ -1,7 +1,7 @@
-package yaro.qa.rangiffler.config;
+package yaro.qa.rangifflerauth.config;
 
-import yaro.qa.rangiffler.service.cors.CookieCsrfFilter;
-import yaro.qa.rangiffler.service.cors.CorsCustomizer;
+import yaro.qa.rangifflerauth.service.cors.CookieCsrfFilter;
+import yaro.qa.rangifflerauth.service.cors.CorsCustomizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

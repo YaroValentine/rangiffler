@@ -1,4 +1,4 @@
-package yaro.qa.rangiffler.model;
+package yaro.qa.rangifflerauth.model;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;

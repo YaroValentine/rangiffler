@@ -1,4 +1,4 @@
-package yaro.qa.rangiffler;
+package yaro.qa.rangifflerauth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

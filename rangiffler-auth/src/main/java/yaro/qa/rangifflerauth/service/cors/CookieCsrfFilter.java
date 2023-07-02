@@ -1,4 +1,4 @@
-package yaro.qa.rangiffler.service.cors;
+package yaro.qa.rangifflerauth.service.cors;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
