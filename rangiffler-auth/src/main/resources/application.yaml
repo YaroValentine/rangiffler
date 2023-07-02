@@ -49,13 +49,13 @@ spring:
     activate:
       on-profile: 'local'
   datasource:
-    url: 'jdbc:mysql://localhost:3306/rangiffler-auth'
+    url: jdbc:mysql://localhost:3306/rangiffler-auth?serverTimezone=UTC&useSSL=false&createDatabaseIfNotExist=true
     username: root
     password: secret
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
 rangiffler-front:
   base-uri: 'localhost:3001'
 rangiffler-auth:
@@ -66,6 +66,7 @@ spring:
     activate:
       on-profile: 'docker'
   datasource:
+#    TODO: updated db address
     url: 'jdbc:mysql://rangiffler-all-db:3306/rangiffler-auth'
     username: root
     password: secret
