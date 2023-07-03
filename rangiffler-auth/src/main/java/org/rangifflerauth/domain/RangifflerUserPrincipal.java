@@ -1,6 +1,6 @@
-package yaro.qa.rangifflerauth.domain;
+package org.rangifflerauth.domain;
 
-import yaro.qa.rangifflerauth.data.UserEntity;
+import org.rangifflerauth.data.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

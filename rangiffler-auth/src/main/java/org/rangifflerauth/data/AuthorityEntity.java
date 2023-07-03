@@ -1,4 +1,4 @@
-package yaro.qa.rangifflerauth.data;
+package org.rangifflerauth.data;
 
 import jakarta.persistence.*;
 

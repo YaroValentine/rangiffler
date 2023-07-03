@@ -1,7 +1,7 @@
-package yaro.qa.rangifflerauth.controller;
+package org.rangifflerauth.controller;
 
-import yaro.qa.rangifflerauth.model.RegistrationModel;
-import yaro.qa.rangifflerauth.service.UserService;
+import org.rangifflerauth.model.RegistrationModel;
+import org.rangifflerauth.service.UserService;
 import jakarta.annotation.Nonnull;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;

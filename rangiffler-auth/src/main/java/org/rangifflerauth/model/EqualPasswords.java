@@ -1,6 +1,6 @@
-package yaro.qa.rangifflerauth.model;
+package org.rangifflerauth.model;
 
-import yaro.qa.rangifflerauth.service.EqualPasswordsValidator;
+import org.rangifflerauth.service.EqualPasswordsValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 

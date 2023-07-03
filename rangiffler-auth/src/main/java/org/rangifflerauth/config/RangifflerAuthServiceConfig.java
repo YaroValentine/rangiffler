@@ -1,10 +1,10 @@
-package yaro.qa.rangifflerauth.config;
+package org.rangifflerauth.config;
 
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
-import yaro.qa.rangifflerauth.config.keys.KeyManager;
-import yaro.qa.rangifflerauth.service.cors.CorsCustomizer;
+import org.rangifflerauth.config.keys.KeyManager;
+import org.rangifflerauth.service.cors.CorsCustomizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package yaro.qa.rangifflerauth.controller;
+package org.rangifflerauth.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

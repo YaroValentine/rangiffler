@@ -1,9 +1,9 @@
-package yaro.qa.rangifflerauth.service;
+package org.rangifflerauth.service;
 
-import yaro.qa.rangifflerauth.data.Authority;
-import yaro.qa.rangifflerauth.data.AuthorityEntity;
-import yaro.qa.rangifflerauth.data.UserEntity;
-import yaro.qa.rangifflerauth.data.repository.UserRepository;
+import org.rangifflerauth.data.Authority;
+import org.rangifflerauth.data.AuthorityEntity;
+import org.rangifflerauth.data.UserEntity;
+import org.rangifflerauth.data.repository.UserRepository;
 import jakarta.annotation.Nonnull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

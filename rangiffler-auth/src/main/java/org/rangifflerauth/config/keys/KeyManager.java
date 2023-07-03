@@ -1,4 +1,4 @@
-package yaro.qa.rangifflerauth.config.keys;
+package org.rangifflerauth.config.keys;
 
 import com.nimbusds.jose.jwk.RSAKey;
 import jakarta.annotation.Nonnull;
