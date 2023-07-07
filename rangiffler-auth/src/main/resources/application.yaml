@@ -49,7 +49,7 @@ spring:
     activate:
       on-profile: 'local'
   datasource:
-    url: jdbc:mysql://localhost:3306/rangiffler-auth?serverTimezone=UTC&useSSL=false&createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/rangiffler-auth?serverTimezone=UTC&createDatabaseIfNotExist=true
     username: root
     password: secret
   jpa:

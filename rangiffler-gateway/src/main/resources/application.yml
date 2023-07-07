@@ -4,6 +4,10 @@ server:
     include:
       message: true
 
+grpc:
+  server:
+    port: 8081
+
 spring:
   application:
     name: rangiffler-gateway
@@ -28,9 +32,3 @@ spring:
 
 rangiffler-front:
   base-uri: 'http://127.0.0.1:3001'
-
-grpc:
-  client:
-    grpcCurrencyClient:
-      address: 'static://localhost:8092'
-      negotiationType: PLAINTEXT
