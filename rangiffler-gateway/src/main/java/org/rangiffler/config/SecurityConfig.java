@@ -26,6 +26,17 @@ public class SecurityConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     corsCustomizer.corsCustomizer(http);
 
+    http.authorizeHttpRequests(
+            authorize ->
+                    authorize.anyRequest().permitAll()
+    ).csrf().disable();
+    return http.build();
+  }
+
+/*  @Bean
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    corsCustomizer.corsCustomizer(http);
+
     http.authorizeHttpRequests()
             .requestMatchers("/actuator/health").permitAll()
             .anyRequest()
@@ -33,6 +44,6 @@ public class SecurityConfig {
             .oauth2ResourceServer()
             .jwt();
     return http.build();
-  }
+  }*/
 
 }
