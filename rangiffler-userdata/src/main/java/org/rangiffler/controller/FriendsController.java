@@ -39,7 +39,7 @@ public class FriendsController {
         return userService.acceptInvitation(username, invitation);
     }
 
-    @PostMapping("/declineInvitation")
+    @PostMapping("friends/decline")
     public List<UserJson> declineInvitation(@RequestParam String username,
                                             @RequestBody FriendJson invitation) {
         return userService.declineInvitation(username, invitation);

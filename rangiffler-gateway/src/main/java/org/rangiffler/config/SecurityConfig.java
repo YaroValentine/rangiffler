@@ -22,7 +22,8 @@ public class SecurityConfig {
     this.corsCustomizer = corsCustomizer;
   }
 
-  @Bean
+  //todo REMOVE when all works
+/*  @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     corsCustomizer.corsCustomizer(http);
 
@@ -31,9 +32,9 @@ public class SecurityConfig {
                     authorize.anyRequest().permitAll()
     ).csrf().disable();
     return http.build();
-  }
+  }*/
 
-/*  @Bean
+  @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     corsCustomizer.corsCustomizer(http);
 
@@ -44,6 +45,6 @@ public class SecurityConfig {
             .oauth2ResourceServer()
             .jwt();
     return http.build();
-  }*/
+  }
 
 }

@@ -1,8 +1,6 @@
 package org.rangiffler.controller;
 
-import org.rangiffler.data.model.FriendJson;
 import org.rangiffler.data.model.UserJson;
-import org.rangiffler.service.IUserdataService;
 import org.rangiffler.service.UserdataService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +14,6 @@ public class UserController {
 
     private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
 
-//    private final IUserdataService userService;
     private final UserdataService userService;
 
     @Autowired
@@ -29,7 +26,7 @@ public class UserController {
         return userService.allUsers(username);
     }
 
-    @PatchMapping("/currentUser")
+    @PatchMapping("/updateUserInfo")
     public UserJson updateUserInfo(@RequestBody UserJson user) {
         return userService.update(user);
     }

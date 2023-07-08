@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PhotoService {
 
-  private final UserService userService = new UserService();
+//  private final RestUserService userService = new RestUserService();
   private final CountryService countryService = new CountryService();
 
   List<PhotoJson> mainUserPhotoList = new ArrayList<>();
@@ -27,7 +27,7 @@ public class PhotoService {
 
   public PhotoJson addPhoto(PhotoJson photoJson) {
     photoJson.setId(UUID.randomUUID());
-    photoJson.setUsername(userService.getCurrentUser().getUsername());
+//    photoJson.setUsername(userService.getCurrentUser().getUsername());
     mainUserPhotoList.add(photoJson);
     return photoJson;
   }
