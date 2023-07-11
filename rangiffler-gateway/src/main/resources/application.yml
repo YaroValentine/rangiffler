@@ -34,3 +34,5 @@ rangiffler-front:
   base-uri: 'http://127.0.0.1:3001'
 niffler-userdata:
   base-uri: 'http://127.0.0.1:9010'
+niffler-geo:
+  base-uri: 'http://127.0.0.1:9020'

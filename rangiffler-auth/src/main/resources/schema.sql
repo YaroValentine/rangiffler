@@ -20,5 +20,3 @@ create table if not exists authorities
     authority varchar(50) not null,
     foreign key (user_id) references users (id)
 );
-
--- CREATE UNIQUE INDEX  ix_auth_username ON authorities (user_id, authority);
