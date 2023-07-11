@@ -39,7 +39,7 @@ public class FriendsController {
         return userService.acceptInvitation(username, invitation);
     }
 
-    @PostMapping("friends/decline")
+    @PostMapping("/friends/decline")
     public List<UserJson> declineInvitation(@RequestParam String username,
                                             @RequestBody FriendJson invitation) {
         return userService.declineInvitation(username, invitation);
@@ -51,7 +51,7 @@ public class FriendsController {
         return userService.addFriend(username, friend);
     }
 
-    @DeleteMapping("/removeFriend")
+    @DeleteMapping("/friends/remove")
     public List<UserJson> removeFriend(@RequestParam String username,
                                        @RequestParam String friendUsername) {
         return userService.removeFriend(username, friendUsername);

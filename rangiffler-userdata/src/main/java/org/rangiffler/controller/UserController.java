@@ -26,14 +26,14 @@ public class UserController {
         return userService.allUsers(username);
     }
 
-    @PatchMapping("/updateUserInfo")
-    public UserJson updateUserInfo(@RequestBody UserJson user) {
-        return userService.update(user);
-    }
-
     @GetMapping("/currentUser")
     public UserJson currentUser(@RequestParam String username) {
         return userService.getCurrentUserOrCreateIfAbsent(username);
+    }
+
+    @PatchMapping("/currentUser")
+    public UserJson updateUserInfo(@RequestBody UserJson user) {
+        return userService.update(user);
     }
 
 }

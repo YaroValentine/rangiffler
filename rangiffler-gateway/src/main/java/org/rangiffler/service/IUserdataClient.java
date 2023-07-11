@@ -6,7 +6,7 @@ import org.rangiffler.model.UserJson;
 
 import java.util.List;
 
-public interface IUserdataService {
+public interface IUserdataClient {
 
     @Nonnull
     List<UserJson> allUsers(@Nonnull String username);

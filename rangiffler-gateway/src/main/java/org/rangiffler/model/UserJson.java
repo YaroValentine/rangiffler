@@ -1,13 +1,24 @@
 package org.rangiffler.model;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Objects;
 import java.util.UUID;
+
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import static org.rangiffler.config.RangifflerGatewayConfig.THREE_MB;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserJson {
 
   @JsonProperty("id")
@@ -27,5 +38,5 @@ public class UserJson {
 
   @JsonProperty("friendStatus")
   private FriendStatus friendStatus;
-}
 
+}

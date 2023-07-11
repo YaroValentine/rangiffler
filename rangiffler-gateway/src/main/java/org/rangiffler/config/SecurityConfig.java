@@ -1,7 +1,6 @@
 package org.rangiffler.config;
 
 import org.rangiffler.cors.CorsCustomizer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -15,36 +14,24 @@ import org.springframework.security.web.SecurityFilterChain;
 @Profile("local")
 public class SecurityConfig {
 
-  private final CorsCustomizer corsCustomizer;
+    private final CorsCustomizer corsCustomizer;
 
-  @Autowired
-  public SecurityConfig(CorsCustomizer corsCustomizer) {
-    this.corsCustomizer = corsCustomizer;
-  }
+    public SecurityConfig(CorsCustomizer corsCustomizer) {
+        this.corsCustomizer = corsCustomizer;
+    }
 
-  //todo REMOVE when all works
-/*  @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    corsCustomizer.corsCustomizer(http);
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        corsCustomizer.corsCustomizer(http);
 
-    http.authorizeHttpRequests(
-            authorize ->
-                    authorize.anyRequest().permitAll()
-    ).csrf().disable();
-    return http.build();
-  }*/
+        http.authorizeHttpRequests()
+                .requestMatchers("/actuator/health").permitAll()
+                .anyRequest()
+                .authenticated().and()
+                .oauth2ResourceServer()
+                .jwt();
 
-  @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    corsCustomizer.corsCustomizer(http);
-
-    http.authorizeHttpRequests()
-            .requestMatchers("/actuator/health").permitAll()
-            .anyRequest()
-            .authenticated().and()
-            .oauth2ResourceServer()
-            .jwt();
-    return http.build();
-  }
+        return http.build();
+    }
 
 }

@@ -57,7 +57,7 @@ spring:
     hibernate:
       ddl-auto: update
 rangiffler-front:
-  base-uri: 'localhost:3001'
+  base-uri: 'http://127.0.0.1:3001'
 rangiffler-auth:
   base-uri: 'http://127.0.0.1:9000'
 ---
