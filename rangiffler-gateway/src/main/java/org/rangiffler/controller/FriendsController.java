@@ -33,34 +33,34 @@ public class FriendsController {
         return userDataClient.friends(username, includePending);
     }
 
-    @GetMapping("/invitations")
+    @GetMapping("invitations")
     public List<UserJson> invitations(@AuthenticationPrincipal Jwt principal) {
         String username = principal.getClaim("sub");
         return userDataClient.invitations(username);
     }
 
-    @PostMapping("/acceptInvitation")
+    @PostMapping("friends/submit")
     public List<UserJson> acceptInvitation(@AuthenticationPrincipal Jwt principal,
                                            @Validated @RequestBody FriendJson invitation) {
         String username = principal.getClaim("sub");
         return userDataClient.acceptInvitation(username, invitation);
     }
 
-    @PostMapping("/friends/decline")
+    @PostMapping("friends/decline")
     public List<UserJson> declineInvitation(@AuthenticationPrincipal Jwt principal,
                                         @Validated @RequestBody FriendJson invitation) {
         String username = principal.getClaim("sub");
         return userDataClient.declineInvitation(username, invitation);
     }
 
-    @PostMapping("/addFriend")
+    @PostMapping("users/invite/")
     public UserJson sendInvitation(@AuthenticationPrincipal Jwt principal,
                                    @Validated @RequestBody FriendJson friend) {
         String username = principal.getClaim("sub");
         return userDataClient.addFriend(username, friend);
     }
 
-    @PostMapping("/friends/remove")
+    @PostMapping("friends/remove")
     public @Nonnull
     List<UserJson> removeFriendFromUser(@AuthenticationPrincipal Jwt principal,
                                         @RequestParam("username") String friendUsername) {

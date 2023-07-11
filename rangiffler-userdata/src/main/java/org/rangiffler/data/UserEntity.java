@@ -24,6 +24,7 @@ public class UserEntity {
     private String surname;
 
     @Lob
+    @Column(columnDefinition = "LONGBLOB")
     private byte[] avatar;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)

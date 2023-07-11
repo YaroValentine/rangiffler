@@ -20,7 +20,8 @@ public class UserController {
     private final RestUserClient userDataClient;
 
     @Autowired
-    public UserController(@Qualifier("rest") RestUserClient userDataClient) {
+    public UserController(@Qualifier("rest") RestUserClient userDataClient)
+    {
         this.userDataClient = userDataClient;
     }
 

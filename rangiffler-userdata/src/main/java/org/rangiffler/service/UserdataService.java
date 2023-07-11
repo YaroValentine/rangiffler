@@ -32,8 +32,8 @@ public class UserdataService {
         if (userEntity == null) {
             throw new NotFoundException("Can`t find user by username: " + user.getUsername());
         }
-        userEntity.setFirstname(user.getFirstname());
-        userEntity.setSurname(user.getSurname());
+        userEntity.setFirstname(user.getFirstName());
+        userEntity.setSurname(user.getLastName());
         userEntity.setAvatar(user.getPhoto() != null ? user.getPhoto().getBytes(StandardCharsets.UTF_8) : null);
         UserEntity saved = userRepository.save(userEntity);
 
