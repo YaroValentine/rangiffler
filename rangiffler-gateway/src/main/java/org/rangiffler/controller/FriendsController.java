@@ -28,7 +28,7 @@ public class FriendsController {
 
     @GetMapping("/friends")
     public List<UserJson> friends(@AuthenticationPrincipal Jwt principal,
-                                             @RequestParam boolean includePending) {
+                                  @RequestParam boolean includePending) {
         String username = principal.getClaim("sub");
         return userDataClient.friends(username, includePending);
     }
@@ -48,7 +48,7 @@ public class FriendsController {
 
     @PostMapping("friends/decline")
     public List<UserJson> declineInvitation(@AuthenticationPrincipal Jwt principal,
-                                        @Validated @RequestBody FriendJson invitation) {
+                                            @Validated @RequestBody FriendJson invitation) {
         String username = principal.getClaim("sub");
         return userDataClient.declineInvitation(username, invitation);
     }
