@@ -4,10 +4,6 @@ server:
     include:
       message: true
 
-grpc:
-  server:
-    port: 8081
-
 spring:
   application:
     name: rangiffler-gateway
@@ -29,6 +25,12 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: 'http://127.0.0.1:9000'
+
+grpc:
+  client:
+    grpcCountriesClient:
+      address: 'static://127.0.0.1:8021'
+      negotiationType: PLAINTEXT
 
 rangiffler-front:
   base-uri: 'http://127.0.0.1:3001'

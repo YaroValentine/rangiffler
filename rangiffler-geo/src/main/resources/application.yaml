@@ -4,6 +4,10 @@ server:
     include:
       message: true
 
+grpc:
+  server:
+    port: 8021
+
 spring:
   application:
     name: rangiffler-geo
@@ -38,11 +42,6 @@ logging:
     org.springframework.security.oauth2: DEBUG
 #    org.springframework.boot.autoconfigure: DEBUG
 
-grpc:
-  client:
-    grpcGeoService:
-      address: 'static://localhost:8081'
-      negotiationType: PLAINTEXT
 ---
 spring:
   config:
@@ -64,5 +63,3 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-
-
