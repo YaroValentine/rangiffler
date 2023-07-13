@@ -25,24 +25,24 @@ public class UserController {
         this.userDataClient = userDataClient;
     }
 
+    @GetMapping("/users")
+    public List<UserJson> getAllUsers(@AuthenticationPrincipal Jwt principal) {
+        String username = principal.getClaim("sub");
+        return userDataClient.allUsers(username);
+    }
+
+    @GetMapping("/currentUser")
+    public UserJson getCurrentUser(@AuthenticationPrincipal Jwt principal) {
+        String username = principal.getClaim("sub");
+        return userDataClient.currentUser(username);
+    }
+
     @PatchMapping("/currentUser")
     public UserJson updateCurrentUser(@AuthenticationPrincipal Jwt principal,
                                       @Validated @RequestBody UserJson user) {
         String username = principal.getClaim("sub");
         user.setUsername(username);
         return userDataClient.updateUserInfo(user);
-    }
-
-    @GetMapping("/currentUser")
-    public UserJson currentUser(@AuthenticationPrincipal Jwt principal) {
-        String username = principal.getClaim("sub");
-        return userDataClient.currentUser(username);
-    }
-
-    @GetMapping("/users")
-    public List<UserJson> allUsers(@AuthenticationPrincipal Jwt principal) {
-        String username = principal.getClaim("sub");
-        return userDataClient.allUsers(username);
     }
 
 }

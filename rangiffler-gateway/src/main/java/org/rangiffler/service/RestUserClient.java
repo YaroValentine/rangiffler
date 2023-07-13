@@ -29,14 +29,19 @@ public class RestUserClient implements IUserdataClient {
         this.rangifflerUserdataBaseUri = rangifflerUserdataBaseUri;
     }
 
+    //region User Controller
     @Override
     public @Nonnull
-    UserJson updateUserInfo(@Nonnull UserJson user) {
-        return webClient.patch()
-                .uri(rangifflerUserdataBaseUri + "/currentUser")
-                .body(Mono.just(user), UserJson.class)
+    List<UserJson> allUsers(@Nonnull String username) {
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add("username", username);
+        URI uri = UriComponentsBuilder.fromHttpUrl(rangifflerUserdataBaseUri + "/users").queryParams(params).build().toUri();
+
+        return webClient.get()
+                .uri(uri)
                 .retrieve()
-                .bodyToMono(UserJson.class)
+                .bodyToMono(new ParameterizedTypeReference<List<UserJson>>() {
+                })
                 .block();
     }
 
@@ -56,20 +61,18 @@ public class RestUserClient implements IUserdataClient {
 
     @Override
     public @Nonnull
-    List<UserJson> allUsers(@Nonnull String username) {
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        params.add("username", username);
-        URI uri = UriComponentsBuilder.fromHttpUrl(rangifflerUserdataBaseUri + "/users").queryParams(params).build().toUri();
-
-        return webClient.get()
-                .uri(uri)
+    UserJson updateUserInfo(@Nonnull UserJson user) {
+        return webClient.patch()
+                .uri(rangifflerUserdataBaseUri + "/currentUser")
+                .body(Mono.just(user), UserJson.class)
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<List<UserJson>>() {
-                })
+                .bodyToMono(UserJson.class)
                 .block();
     }
+    //endregion
 
-  @Override
+    //region Friends Controller
+    @Override
   public @Nonnull
   List<UserJson> friends(@Nonnull String username, boolean includePending) {
     MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
@@ -175,4 +178,5 @@ public class RestUserClient implements IUserdataClient {
                 })
                 .block();
     }
+    //endregion
 }

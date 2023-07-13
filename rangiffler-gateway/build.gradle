@@ -13,6 +13,8 @@ repositories {
 }
 
 dependencies {
+    implementation project(':rangiffler-grpc-common')
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation('org.springframework.boot:spring-boot-starter-web-services') {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'

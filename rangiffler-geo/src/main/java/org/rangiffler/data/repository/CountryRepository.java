@@ -7,9 +7,9 @@ import java.util.UUID;
 
 public interface CountryRepository extends CrudRepository<CountryEntity, UUID> {
 
-    CountryEntity getByCountryName(String nam);
+    CountryEntity getByCountryName(String name);
 
-    CountryEntity getByCountryCode(String name);
+    CountryEntity getByCountryCode(String code);
 
 
 }
