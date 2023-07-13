@@ -1,4 +1,4 @@
-package guru.qa.grpc.rangiffler.grpc;
+package org.grpc.rangiffler.grpc;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
@@ -16,28 +16,28 @@ public final class RangifflerCountriesServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      guru.qa.grpc.rangiffler.grpc.Countries> getGetCountriesMethod;
+      org.grpc.rangiffler.grpc.Countries> getGetCountriesMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "getCountries",
       requestType = com.google.protobuf.Empty.class,
-      responseType = guru.qa.grpc.rangiffler.grpc.Countries.class,
+      responseType = org.grpc.rangiffler.grpc.Countries.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      guru.qa.grpc.rangiffler.grpc.Countries> getGetCountriesMethod() {
-    io.grpc.MethodDescriptor<com.google.protobuf.Empty, guru.qa.grpc.rangiffler.grpc.Countries> getGetCountriesMethod;
+      org.grpc.rangiffler.grpc.Countries> getGetCountriesMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, org.grpc.rangiffler.grpc.Countries> getGetCountriesMethod;
     if ((getGetCountriesMethod = RangifflerCountriesServiceGrpc.getGetCountriesMethod) == null) {
       synchronized (RangifflerCountriesServiceGrpc.class) {
         if ((getGetCountriesMethod = RangifflerCountriesServiceGrpc.getGetCountriesMethod) == null) {
           RangifflerCountriesServiceGrpc.getGetCountriesMethod = getGetCountriesMethod =
-              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, guru.qa.grpc.rangiffler.grpc.Countries>newBuilder()
+              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, org.grpc.rangiffler.grpc.Countries>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "getCountries"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  guru.qa.grpc.rangiffler.grpc.Countries.getDefaultInstance()))
+                  org.grpc.rangiffler.grpc.Countries.getDefaultInstance()))
               .setSchemaDescriptor(new RangifflerCountriesServiceMethodDescriptorSupplier("getCountries"))
               .build();
         }
@@ -46,29 +46,29 @@ public final class RangifflerCountriesServiceGrpc {
     return getGetCountriesMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<guru.qa.grpc.rangiffler.grpc.CountryByCodeRequest,
-      guru.qa.grpc.rangiffler.grpc.Country> getGetCountriesByCodeMethod;
+  private static volatile io.grpc.MethodDescriptor<org.grpc.rangiffler.grpc.CountryByCodeRequest,
+      org.grpc.rangiffler.grpc.Country> getGetCountriesByCodeMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "getCountriesByCode",
-      requestType = guru.qa.grpc.rangiffler.grpc.CountryByCodeRequest.class,
-      responseType = guru.qa.grpc.rangiffler.grpc.Country.class,
+      requestType = org.grpc.rangiffler.grpc.CountryByCodeRequest.class,
+      responseType = org.grpc.rangiffler.grpc.Country.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<guru.qa.grpc.rangiffler.grpc.CountryByCodeRequest,
-      guru.qa.grpc.rangiffler.grpc.Country> getGetCountriesByCodeMethod() {
-    io.grpc.MethodDescriptor<guru.qa.grpc.rangiffler.grpc.CountryByCodeRequest, guru.qa.grpc.rangiffler.grpc.Country> getGetCountriesByCodeMethod;
+  public static io.grpc.MethodDescriptor<org.grpc.rangiffler.grpc.CountryByCodeRequest,
+      org.grpc.rangiffler.grpc.Country> getGetCountriesByCodeMethod() {
+    io.grpc.MethodDescriptor<org.grpc.rangiffler.grpc.CountryByCodeRequest, org.grpc.rangiffler.grpc.Country> getGetCountriesByCodeMethod;
     if ((getGetCountriesByCodeMethod = RangifflerCountriesServiceGrpc.getGetCountriesByCodeMethod) == null) {
       synchronized (RangifflerCountriesServiceGrpc.class) {
         if ((getGetCountriesByCodeMethod = RangifflerCountriesServiceGrpc.getGetCountriesByCodeMethod) == null) {
           RangifflerCountriesServiceGrpc.getGetCountriesByCodeMethod = getGetCountriesByCodeMethod =
-              io.grpc.MethodDescriptor.<guru.qa.grpc.rangiffler.grpc.CountryByCodeRequest, guru.qa.grpc.rangiffler.grpc.Country>newBuilder()
+              io.grpc.MethodDescriptor.<org.grpc.rangiffler.grpc.CountryByCodeRequest, org.grpc.rangiffler.grpc.Country>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "getCountriesByCode"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  guru.qa.grpc.rangiffler.grpc.CountryByCodeRequest.getDefaultInstance()))
+                  org.grpc.rangiffler.grpc.CountryByCodeRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  guru.qa.grpc.rangiffler.grpc.Country.getDefaultInstance()))
+                  org.grpc.rangiffler.grpc.Country.getDefaultInstance()))
               .setSchemaDescriptor(new RangifflerCountriesServiceMethodDescriptorSupplier("getCountriesByCode"))
               .build();
         }
@@ -128,14 +128,14 @@ public final class RangifflerCountriesServiceGrpc {
     /**
      */
     public void getCountries(com.google.protobuf.Empty request,
-        io.grpc.stub.StreamObserver<guru.qa.grpc.rangiffler.grpc.Countries> responseObserver) {
+        io.grpc.stub.StreamObserver<org.grpc.rangiffler.grpc.Countries> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetCountriesMethod(), responseObserver);
     }
 
     /**
      */
-    public void getCountriesByCode(guru.qa.grpc.rangiffler.grpc.CountryByCodeRequest request,
-        io.grpc.stub.StreamObserver<guru.qa.grpc.rangiffler.grpc.Country> responseObserver) {
+    public void getCountriesByCode(org.grpc.rangiffler.grpc.CountryByCodeRequest request,
+        io.grpc.stub.StreamObserver<org.grpc.rangiffler.grpc.Country> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetCountriesByCodeMethod(), responseObserver);
     }
 
@@ -146,14 +146,14 @@ public final class RangifflerCountriesServiceGrpc {
             io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
                 com.google.protobuf.Empty,
-                guru.qa.grpc.rangiffler.grpc.Countries>(
+                org.grpc.rangiffler.grpc.Countries>(
                   this, METHODID_GET_COUNTRIES)))
           .addMethod(
             getGetCountriesByCodeMethod(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
-                guru.qa.grpc.rangiffler.grpc.CountryByCodeRequest,
-                guru.qa.grpc.rangiffler.grpc.Country>(
+                org.grpc.rangiffler.grpc.CountryByCodeRequest,
+                org.grpc.rangiffler.grpc.Country>(
                   this, METHODID_GET_COUNTRIES_BY_CODE)))
           .build();
     }
@@ -176,15 +176,15 @@ public final class RangifflerCountriesServiceGrpc {
     /**
      */
     public void getCountries(com.google.protobuf.Empty request,
-        io.grpc.stub.StreamObserver<guru.qa.grpc.rangiffler.grpc.Countries> responseObserver) {
+        io.grpc.stub.StreamObserver<org.grpc.rangiffler.grpc.Countries> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetCountriesMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void getCountriesByCode(guru.qa.grpc.rangiffler.grpc.CountryByCodeRequest request,
-        io.grpc.stub.StreamObserver<guru.qa.grpc.rangiffler.grpc.Country> responseObserver) {
+    public void getCountriesByCode(org.grpc.rangiffler.grpc.CountryByCodeRequest request,
+        io.grpc.stub.StreamObserver<org.grpc.rangiffler.grpc.Country> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetCountriesByCodeMethod(), getCallOptions()), request, responseObserver);
     }
@@ -206,14 +206,14 @@ public final class RangifflerCountriesServiceGrpc {
 
     /**
      */
-    public guru.qa.grpc.rangiffler.grpc.Countries getCountries(com.google.protobuf.Empty request) {
+    public org.grpc.rangiffler.grpc.Countries getCountries(com.google.protobuf.Empty request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetCountriesMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public guru.qa.grpc.rangiffler.grpc.Country getCountriesByCode(guru.qa.grpc.rangiffler.grpc.CountryByCodeRequest request) {
+    public org.grpc.rangiffler.grpc.Country getCountriesByCode(org.grpc.rangiffler.grpc.CountryByCodeRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetCountriesByCodeMethod(), getCallOptions(), request);
     }
@@ -235,7 +235,7 @@ public final class RangifflerCountriesServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<guru.qa.grpc.rangiffler.grpc.Countries> getCountries(
+    public com.google.common.util.concurrent.ListenableFuture<org.grpc.rangiffler.grpc.Countries> getCountries(
         com.google.protobuf.Empty request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetCountriesMethod(), getCallOptions()), request);
@@ -243,8 +243,8 @@ public final class RangifflerCountriesServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<guru.qa.grpc.rangiffler.grpc.Country> getCountriesByCode(
-        guru.qa.grpc.rangiffler.grpc.CountryByCodeRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<org.grpc.rangiffler.grpc.Country> getCountriesByCode(
+        org.grpc.rangiffler.grpc.CountryByCodeRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetCountriesByCodeMethod(), getCallOptions()), request);
     }
@@ -272,11 +272,11 @@ public final class RangifflerCountriesServiceGrpc {
       switch (methodId) {
         case METHODID_GET_COUNTRIES:
           serviceImpl.getCountries((com.google.protobuf.Empty) request,
-              (io.grpc.stub.StreamObserver<guru.qa.grpc.rangiffler.grpc.Countries>) responseObserver);
+              (io.grpc.stub.StreamObserver<org.grpc.rangiffler.grpc.Countries>) responseObserver);
           break;
         case METHODID_GET_COUNTRIES_BY_CODE:
-          serviceImpl.getCountriesByCode((guru.qa.grpc.rangiffler.grpc.CountryByCodeRequest) request,
-              (io.grpc.stub.StreamObserver<guru.qa.grpc.rangiffler.grpc.Country>) responseObserver);
+          serviceImpl.getCountriesByCode((org.grpc.rangiffler.grpc.CountryByCodeRequest) request,
+              (io.grpc.stub.StreamObserver<org.grpc.rangiffler.grpc.Country>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -300,7 +300,7 @@ public final class RangifflerCountriesServiceGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return guru.qa.grpc.rangiffler.grpc.RangifflerCountriesProto.getDescriptor();
+      return org.grpc.rangiffler.grpc.RangifflerCountriesProto.getDescriptor();
     }
 
     @java.lang.Override

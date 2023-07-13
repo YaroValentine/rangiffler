@@ -3,9 +3,11 @@ package org.rangiffler.service;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.rangiffler.data.repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.grpc.rangiffler.grpc.RangifflerCountriesServiceGrpc;
 
 @GrpcService
-public class GrpcCountryService {
+// RangifflerCountriesServiceGrpc.RangifflerCountriesServiceImplBase
+public class GrpcCountryService  /*RangifflerCountriesServiceImplBase*/ {
 
     private final CountryRepository cr;
 
