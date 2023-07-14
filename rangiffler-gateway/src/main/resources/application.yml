@@ -29,7 +29,10 @@ spring:
 grpc:
   client:
     grpcCountriesClient:
-      address: 'static://127.0.0.1:8021'
+      address: 'static://127.0.0.1:9021'
+      negotiationType: PLAINTEXT
+    grpcPhotoClient:
+      address: 'static://127.0.0.1:9031'
       negotiationType: PLAINTEXT
 
 rangiffler-front:
@@ -38,3 +41,5 @@ niffler-userdata:
   base-uri: 'http://127.0.0.1:9010'
 niffler-geo:
   base-uri: 'http://127.0.0.1:9020'
+  niffler-geo:
+    base-uri: 'http://127.0.0.1:9030'

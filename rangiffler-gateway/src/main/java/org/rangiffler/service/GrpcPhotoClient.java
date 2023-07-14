@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class PhotoService {
+public class GrpcPhotoClient {
 
     //  private final RestUserService userService = new RestUserService();
     private final CountryService countryService = new CountryService();

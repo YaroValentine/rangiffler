@@ -1,16 +1,15 @@
 server:
-  port: 9020
+  port: 9030
   error:
     include:
       message: true
-
 grpc:
   server:
-    port: 9021
+    port: 9031
 
 spring:
   application:
-    name: rangiffler-geo
+    name: rangiffler-photo
   datasource:
     hikari:
       connection-timeout: 20000
@@ -48,18 +47,32 @@ spring:
     activate:
       on-profile: 'local'
   datasource:
-    url: jdbc:mysql://localhost:3306/rangiffler-geo?serverTimezone=UTC&createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/rangiffler_photo?serverTimezone=UTC&useSSL=false&createDatabaseIfNotExist=true
   jpa:
     hibernate:
-      ddl-auto: update
-
+      ddl-auto: validate
+grpc:
+  client:
+    grpcUsersClient:
+      address: 'static://localhost:8090'
+      negotiationType: PLAINTEXT
+    grpcCountriesClient:
+      address: 'static://127.0.0.1:8092'
+      negotiationType: PLAINTEXT
 ---
 spring:
   config:
     activate:
       on-profile: 'docker'
   datasource:
-    url: jdbc:mysql://localhost:3306/rangiffler-geo?serverTimezone=UTC&createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/rangiffler_photo?serverTimezone=UTC&useSSL=false&createDatabaseIfNotExist=true
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
+---
+
+
+
+
+
+
