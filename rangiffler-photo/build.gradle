@@ -1,19 +1,56 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '3.0.1'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'com.palantir.docker' version '0.34.0'
+    id "io.freefair.lombok" version '6.4.2'
 }
 
 group = 'org.rangiffler'
 version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.9.1')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation project(':rangiffler-grpc-common')
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'net.devh:grpc-client-spring-boot-starter:2.14.0.RELEASE'
+    runtimeOnly 'mysql:mysql-connector-java'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation "org.springframework:spring-webflux"
 }
 
-test {
+tasks.named('test') {
+    useJUnitPlatform()
+}
+//docker {
+//    dependsOn build
+//    name "dtuchs/niffler-currency:${project.version}"
+//    tag 'latest', 'dtuchs/niffler-currency:latest'
+//    files bootJar.archiveFile
+//    buildArgs([APP_VER: project.version, DOCKER: project.ext.dockerImage])
+//    noCache true
+//}
+
+task dockerRmi(type: Exec) {
+    workingDir "${buildDir}"
+    commandLine 'bash', '-c', "docker rmi -f \$(docker images | grep 'niffler')\n"
+}
+
+tasks.named('test') {
     useJUnitPlatform()
 }
