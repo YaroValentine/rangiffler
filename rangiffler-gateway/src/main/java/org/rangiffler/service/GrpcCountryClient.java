@@ -20,13 +20,13 @@ public class GrpcCountryClient {
     private static final Empty EMPTY = Empty.getDefaultInstance();
 
     @GrpcClient("grpcCountriesClient")
-    private RangifflerCountriesServiceGrpc.RangifflerCountriesServiceBlockingStub rangifflerCountriesServiceStub;
+    private RangifflerCountriesServiceGrpc.RangifflerCountriesServiceBlockingStub countriesServiceStub;
 
     public @Nonnull
     List<CountryJson> getAllCountries() {
 
         try {
-            return rangifflerCountriesServiceStub.getCountries(EMPTY).getAllCountriesList()
+            return countriesServiceStub.getCountries(EMPTY).getAllCountriesList()
                     .stream().map(CountryJson::fromGrpcMessage)
                     .toList();
         } catch (StatusRuntimeException e) {

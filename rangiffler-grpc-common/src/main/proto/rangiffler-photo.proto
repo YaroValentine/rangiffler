@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+import "rangiffler-countries.proto";
+import "google/protobuf/empty.proto";
+
+option java_multiple_files = true;
+option java_package = "org.grpc.rangiffler.grpc";
+option java_outer_classname = "RangifflerPhotoProto";
+
+service RangifflerPhotoService {
+  rpc GetPhotosForUser(UsernameRequest) returns(Photos) {}
+  rpc GetAllFriendsPhotos (UsernameRequest) returns(Photos) {}
+  rpc AddPhoto(Photo) returns (Photo) {}
+  rpc EditPhoto(Photo) returns (Photo) {}
+  rpc DeletePhoto(PhotoIdRequest) returns (google.protobuf.Empty) {}
+}
+
+message Photos {
+  repeated Photo photos = 1;
+}
+
+message UsernameRequest {
+  string username = 1;
+}
+
+message Photo {
+  string id = 1;
+  string username = 2;
+  string description = 3;
+  string photo = 4;
+  Country country = 5;
+}
+
+message PhotoIdRequest {
+  string id = 1;
+}

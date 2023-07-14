@@ -21,7 +21,6 @@ public class PhotoController {
         this.photoService = photoService;
     }
 
-
     @GetMapping("/photos")
     public List<PhotoJson> getPhotosForUser(@AuthenticationPrincipal Jwt principal) {
         String username = principal.getClaim("sub");

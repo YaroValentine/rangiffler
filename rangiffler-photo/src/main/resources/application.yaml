@@ -3,6 +3,7 @@ server:
   error:
     include:
       message: true
+
 grpc:
   server:
     port: 9031
@@ -40,32 +41,23 @@ logging:
     org.springframework.security: DEBUG
     org.springframework.security.oauth2: DEBUG
 #    org.springframework.boot.autoconfigure: DEBUG
-
 ---
 spring:
   config:
     activate:
       on-profile: 'local'
   datasource:
-    url: jdbc:mysql://localhost:3306/rangiffler_photo?serverTimezone=UTC&useSSL=false&createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/rangiffler-photo?serverTimezone=UTC&createDatabaseIfNotExist=true
   jpa:
     hibernate:
       ddl-auto: validate
-grpc:
-  client:
-    grpcUsersClient:
-      address: 'static://localhost:8090'
-      negotiationType: PLAINTEXT
-    grpcCountriesClient:
-      address: 'static://127.0.0.1:8092'
-      negotiationType: PLAINTEXT
 ---
 spring:
   config:
     activate:
       on-profile: 'docker'
   datasource:
-    url: jdbc:mysql://localhost:3306/rangiffler_photo?serverTimezone=UTC&useSSL=false&createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/rangiffler-photo?serverTimezone=UTC&createDatabaseIfNotExist=true
   jpa:
     hibernate:
       ddl-auto: validate
