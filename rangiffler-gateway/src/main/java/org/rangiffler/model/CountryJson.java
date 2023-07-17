@@ -19,10 +19,10 @@ public class CountryJson {
     private UUID id;
 
     @JsonProperty("name")
-    private String name;
+    private String countryName;
 
     @JsonProperty("code")
-    private String code;
+    private String countryCode;
 
     public static CountryJson fromGrpcMessage(Country geo) {
         return new CountryJson(
@@ -30,6 +30,13 @@ public class CountryJson {
                 geo.getCountryName(),
                 geo.getCountryCode()
         );
+    }
+
+    public Country toGrpcMessage() {
+        return Country.newBuilder().setCountryCode(countryCode)
+                .setId(/*id != null ? */id.toString()/* : ""*/) //todo check :?
+                .setCountryName(countryName)
+                .build();
     }
 
 }

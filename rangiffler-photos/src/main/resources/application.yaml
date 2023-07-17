@@ -6,7 +6,11 @@ server:
 
 grpc:
   server:
-    port: 9031
+    port: 8031
+  client:
+    grpcCountriesClient:
+      address: 'static://127.0.0.1:9021'
+      negotiationType: PLAINTEXT
 
 spring:
   application:
@@ -41,6 +45,9 @@ logging:
     org.springframework.security: DEBUG
     org.springframework.security.oauth2: DEBUG
 #    org.springframework.boot.autoconfigure: DEBUG
+
+rangiffler-userdata:
+  base-uri: 'http://127.0.0.1:9010'
 ---
 spring:
   config:
@@ -50,7 +57,7 @@ spring:
     url: jdbc:mysql://localhost:3306/rangiffler-photo?serverTimezone=UTC&createDatabaseIfNotExist=true
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
 ---
 spring:
   config:
@@ -60,7 +67,7 @@ spring:
     url: jdbc:mysql://localhost:3306/rangiffler-photo?serverTimezone=UTC&createDatabaseIfNotExist=true
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
 ---
 
 

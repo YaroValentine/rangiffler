@@ -9,10 +9,6 @@ plugins {
 group = 'org.rangiffler'
 version = '0.0.1-SNAPSHOT'
 
-java {
-    sourceCompatibility = '17'
-}
-
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -26,17 +22,16 @@ repositories {
 dependencies {
     implementation project(':rangiffler-grpc-common')
 
+    implementation 'net.devh:grpc-client-spring-boot-starter:2.14.0.RELEASE'
+    implementation 'net.devh:grpc-server-spring-boot-starter:2.14.0.RELEASE'
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'net.devh:grpc-client-spring-boot-starter:2.14.0.RELEASE'
     runtimeOnly 'mysql:mysql-connector-java'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation "org.springframework:spring-webflux"
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
-}
 //docker {
 //    dependsOn build
 //    name "dtuchs/niffler-currency:${project.version}"

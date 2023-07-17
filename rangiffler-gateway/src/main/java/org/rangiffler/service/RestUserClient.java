@@ -24,7 +24,7 @@ public class RestUserClient implements IUserdataClient {
     private final String rangifflerUserdataBaseUri;
 
     public RestUserClient(WebClient webClient,
-                          @Value("${niffler-userdata.base-uri}") String rangifflerUserdataBaseUri) {
+                          @Value("${rangiffler-userdata.base-uri}") String rangifflerUserdataBaseUri) {
         this.webClient = webClient;
         this.rangifflerUserdataBaseUri = rangifflerUserdataBaseUri;
     }

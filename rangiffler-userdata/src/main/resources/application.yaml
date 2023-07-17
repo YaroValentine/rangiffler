@@ -38,12 +38,6 @@ logging:
     org.springframework.security.oauth2: DEBUG
 #    org.springframework.boot.autoconfigure: DEBUG
 
-grpc:
-  client:
-    grpcUserdataService:
-      address: 'static://localhost:8081'
-      negotiationType: PLAINTEXT
-
 ---
 spring:
   config:

@@ -32,6 +32,7 @@ public class SecurityConfig {
                 .jwt();
 
         return http.build();
+
     }
 
 }
