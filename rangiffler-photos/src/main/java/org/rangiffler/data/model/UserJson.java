@@ -15,23 +15,23 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UserJson {
 
-  @JsonProperty("id")
-  private UUID id;
+    @JsonProperty("id")
+    private UUID id;
 
-  @JsonProperty("username")
-  private String username;
+    @JsonProperty("username")
+    private String username;
 
-  @JsonProperty("firstName")
-  private String firstName;
+    @JsonProperty("firstName")
+    private String firstName;
 
-  @JsonProperty("lastName")
-  private String lastLame;
+    @JsonProperty("lastName")
+    private String lastLame;
 
-  @JsonProperty("avatar")
-  private String avatar;
+    @JsonProperty("avatar")
+    private String avatar;
 
-  @JsonProperty("friendStatus")
-  private FriendStatus friendStatus;
+    @JsonProperty("friendStatus")
+    private FriendStatus friendStatus;
 
 }
 

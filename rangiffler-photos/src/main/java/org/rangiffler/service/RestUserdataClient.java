@@ -1,15 +1,13 @@
-package org.rangiffler.service.api;
+package org.rangiffler.service;
 
 
 import org.rangiffler.data.model.UserJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -39,16 +37,9 @@ public class RestUserdataClient {
         return webClient.get()
                 .uri(uri)
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<List<UserJson>>() {})
+                .bodyToMono(new ParameterizedTypeReference<List<UserJson>>() {
+                })
                 .block();
     }
-    @Bean
-    public WebClient webClient() {
-        return WebClient
-                .builder()
-                .exchangeStrategies(ExchangeStrategies.builder().codecs(
-                        configurer -> configurer.defaultCodecs().maxInMemorySize(Integer.MAX_VALUE)).build())
-                .build();
-    }
-
 }
+

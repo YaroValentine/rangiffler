@@ -7,10 +7,6 @@ import org.grpc.rangiffler.grpc.*;
 import org.rangiffler.data.PhotoEntity;
 import org.rangiffler.data.model.UserJson;
 import org.rangiffler.data.repository.PhotoRepository;
-import org.rangiffler.service.api.GrpcCountriesClient;
-import org.rangiffler.service.api.RestUserdataClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.nio.charset.StandardCharsets;
@@ -19,7 +15,6 @@ import java.util.UUID;
 
 @GrpcService
 public class GrpcPhotoService extends RangifflerPhotoServiceGrpc.RangifflerPhotoServiceImplBase {
-    private static final Logger LOG = LoggerFactory.getLogger(GrpcPhotoService.class);
     private final PhotoRepository photoRepository;
     private final GrpcCountriesClient grpcCountriesClient;
     private final RestUserdataClient restUserdataClient;

@@ -69,9 +69,3 @@ spring:
     hibernate:
       ddl-auto: update
 ---
-
-
-
-
-
-

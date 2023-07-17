@@ -9,5 +9,6 @@ import java.util.UUID;
 
 public interface PhotoRepository extends JpaRepository<PhotoEntity, UUID> {
     List<PhotoEntity> findAllPhotosByUsername(String username);
+
     List<PhotoEntity> findAllByUsernameIn(Collection<String> usernames);
 }
