@@ -32,7 +32,7 @@ public class PhotoJson {
 
     public static PhotoJson fromGrpcMessage(Photo photo) {
         return PhotoJson.builder()
-                .id(/*!photo.getId().isEmpty() ? */UUID.fromString(photo.getId())/* : null*/) //todo check :?
+                .id(!photo.getId().isEmpty() ? UUID.fromString(photo.getId()) : null)
                 .photo(photo.getPhoto())
                 .countryJson(CountryJson.fromGrpcMessage(photo.getCountry()))
                 .description(photo.getDescription())
@@ -42,11 +42,12 @@ public class PhotoJson {
 
     public Photo toGrpcMessage() {
         return Photo.newBuilder()
-                .setId(/*id != null ? */id.toString()/* : ""*/) //todo check :?
+                .setId(id != null ? id.toString() : "")
                 .setUsername(username)
                 .setDescription(description)
                 .setPhoto(photo)
                 .setCountry(countryJson.toGrpcMessage())
                 .build();
     }
+
 }

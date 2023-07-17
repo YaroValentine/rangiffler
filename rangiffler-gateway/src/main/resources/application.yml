@@ -33,6 +33,7 @@ grpc:
       negotiationType: PLAINTEXT
     grpcPhotoClient:
       address: 'static://127.0.0.1:9031'
+      max-inbound-message-size: 20971520
       negotiationType: PLAINTEXT
 
 rangiffler-front:
