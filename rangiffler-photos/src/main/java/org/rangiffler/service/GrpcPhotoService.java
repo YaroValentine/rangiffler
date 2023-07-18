@@ -28,46 +28,56 @@ public class GrpcPhotoService extends RangifflerPhotoServiceGrpc.RangifflerPhoto
         this.restUserdataClient = restUserdataClient;
     }
 
+    private Country getCountryInfoByCode(String code) {
+        CountryByCodeRequest request = CountryByCodeRequest.newBuilder()
+                .setCode(code)
+                .build();
+        return grpcCountriesClient.getCountryByCode(request);
+    }
+
+    private Photo convertToPhoto(PhotoEntity photoEntity) {
+        return Photo.newBuilder()
+                .setId(photoEntity.getId().toString())
+                .setPhoto(new String(photoEntity.getPhoto(), StandardCharsets.UTF_8))
+                .setCountry(getCountryInfoByCode(photoEntity.getCountryCode()))
+                .setDescription(photoEntity.getDescription())
+                .setUsername(photoEntity.getUsername())
+                .build();
+    }
+
     @Override
     public void addPhoto(Photo request, StreamObserver<Photo> responseObserver) {
-        Country countryInfo = getCountryInfoByCode(request.getCountry().getCountryCode());
         PhotoEntity newPhoto = new PhotoEntity();
         newPhoto.setPhoto(request.getPhoto().getBytes(StandardCharsets.UTF_8));
         newPhoto.setCountryCode(request.getCountry().getCountryCode());
         newPhoto.setUsername(request.getUsername());
         newPhoto.setDescription(request.getDescription());
         photoRepository.save(newPhoto);
-        Photo response = Photo.newBuilder().setPhoto(new String(newPhoto.getPhoto(), StandardCharsets.UTF_8))
-                .setCountry(countryInfo)
-                .setUsername(newPhoto.getUsername())
-                .setDescription(newPhoto.getDescription())
-                .build();
+
+        Photo response = convertToPhoto(newPhoto);
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
 
     @Override
     public void deletePhoto(PhotoIdRequest request, StreamObserver<Empty> responseObserver) {
-        PhotoEntity photoById = photoRepository.findById(UUID.fromString(request.getId())).orElseThrow();
-        photoRepository.delete(photoById);
+        PhotoEntity photo = photoRepository.findById(UUID.fromString(request.getId())).orElseThrow();
+        photoRepository.delete(photo);
         responseObserver.onNext(Empty.getDefaultInstance());
         responseObserver.onCompleted();
     }
 
     @Override
     public void editPhoto(Photo request, StreamObserver<Photo> responseObserver) {
-        Country countryInfo = getCountryInfoByCode(request.getCountry().getCountryCode());
-        PhotoEntity editPhoto = new PhotoEntity();
-        editPhoto.setPhoto(request.getPhoto().getBytes(StandardCharsets.UTF_8));
-        editPhoto.setCountryCode(request.getCountry().getCountryCode());
-        editPhoto.setUsername(request.getUsername());
-        editPhoto.setDescription(request.getDescription());
-        photoRepository.save(editPhoto);
-        Photo response = Photo.newBuilder().setPhoto(new String(editPhoto.getPhoto(), StandardCharsets.UTF_8))
-                .setCountry(countryInfo)
-                .setUsername(editPhoto.getUsername())
-                .setDescription(editPhoto.getDescription())
-                .build();
+        PhotoEntity existingPhoto = photoRepository.findById(UUID.fromString(request.getId()))
+                .orElseThrow(() -> new RuntimeException("Photo not found with id: " + request.getId()));
+
+        existingPhoto.setDescription(request.getDescription());
+        existingPhoto.setPhoto(request.getPhoto().getBytes(StandardCharsets.UTF_8));
+        existingPhoto.setCountryCode(request.getCountry().getCountryCode());
+        photoRepository.save(existingPhoto);
+
+        Photo response = convertToPhoto(existingPhoto);
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
@@ -75,50 +85,22 @@ public class GrpcPhotoService extends RangifflerPhotoServiceGrpc.RangifflerPhoto
     @Override
     public void getPhotosForUser(UsernameRequest request, StreamObserver<Photos> responseObserver) {
         List<PhotoEntity> allPhotosByUsername = photoRepository.findAllPhotosByUsername(request.getUsername());
-        Photos.Builder builderAllPhoto = Photos.newBuilder();
-        if (allPhotosByUsername.size() > 0) {
-            for (PhotoEntity photoEntity : allPhotosByUsername) {
-                Photo.Builder photoBuilder = Photo.newBuilder()
-                        .setId(photoEntity.getId().toString())
-                        .setPhoto(new String(photoEntity.getPhoto(), StandardCharsets.UTF_8))
-                        .setCountry(getCountryInfoByCode(photoEntity.getCountryCode()))
-                        .setDescription(photoEntity.getDescription())
-                        .setUsername(photoEntity.getUsername());
-                builderAllPhoto.addPhotos(photoBuilder.build());
-            }
-        }
-        Photos photos = builderAllPhoto.build();
+        Photos photos = Photos.newBuilder()
+                .addAllPhotos(allPhotosByUsername.stream().map(this::convertToPhoto).toList())
+                .build();
         responseObserver.onNext(photos);
         responseObserver.onCompleted();
     }
 
     @Override
     public void getAllFriendsPhotos(UsernameRequest request, StreamObserver<Photos> responseObserver) {
-        UsernameRequest requestUsername = UsernameRequest.newBuilder().setUsername(request.getUsername()).build();
-        List<UserJson> allFriends = restUserdataClient.friends(requestUsername.getUsername());
-        List<String> friendsNames = allFriends.stream().map(u -> u.getUsername()).toList();
+        List<UserJson> allFriends = restUserdataClient.friends(request.getUsername());
+        List<String> friendsNames = allFriends.stream().map(UserJson::getUsername).toList();
         List<PhotoEntity> friendsPhotosEntity = photoRepository.findAllByUsernameIn(friendsNames);
-        Photos.Builder builderAllPhoto = Photos.newBuilder();
-        if (friendsPhotosEntity.size() > 0) {
-            for (PhotoEntity photoEntity : friendsPhotosEntity) {
-                Photo.Builder photoBuilder = Photo.newBuilder()
-                        .setId(photoEntity.getId().toString())
-                        .setPhoto(new String(photoEntity.getPhoto(), StandardCharsets.UTF_8))
-                        .setCountry(getCountryInfoByCode(photoEntity.getCountryCode()))
-                        .setDescription(photoEntity.getDescription())
-                        .setUsername(photoEntity.getUsername());
-                builderAllPhoto.addPhotos(photoBuilder.build());
-            }
-        }
-        Photos photos = builderAllPhoto.build();
+        Photos photos = Photos.newBuilder()
+                .addAllPhotos(friendsPhotosEntity.stream().map(this::convertToPhoto).toList())
+                .build();
         responseObserver.onNext(photos);
         responseObserver.onCompleted();
-    }
-
-    private Country getCountryInfoByCode(String code) {
-        CountryByCodeRequest request = CountryByCodeRequest.newBuilder()
-                .setCode(code)
-                .build();
-        return grpcCountriesClient.getCountryByCode(request);
     }
 }
