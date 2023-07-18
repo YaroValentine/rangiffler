@@ -18,7 +18,7 @@ public interface IUserdataClient {
     UserJson updateUserInfo(@Nonnull UserJson user);
 
     @Nonnull
-    List<UserJson> friends(@Nonnull String username, boolean includePending);
+    List<UserJson> friends(@Nonnull String username);
 
     @Nonnull
     List<UserJson> invitations(@Nonnull String username);

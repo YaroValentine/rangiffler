@@ -74,10 +74,9 @@ public class RestUserClient implements IUserdataClient {
     //region Friends Controller
     @Override
     public @Nonnull
-    List<UserJson> friends(@Nonnull String username, boolean includePending) {
+    List<UserJson> friends(@Nonnull String username) {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("username", username);
-        params.add("includePending", String.valueOf(includePending));
         URI uri = UriComponentsBuilder.fromHttpUrl(rangifflerUserdataBaseUri + "/friends").queryParams(params).build().toUri();
 
         return webClient.get()

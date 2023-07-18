@@ -15,7 +15,6 @@ import java.util.UUID;
 @RestController
 public class PhotoController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CountryController.class);
     private final GrpcPhotoClient photoService;
 
     @Autowired

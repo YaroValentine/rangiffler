@@ -19,7 +19,6 @@ import java.util.List;
 @RestController
 public class UserController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
     private final RestUserClient userDataClient;
 
     @Autowired

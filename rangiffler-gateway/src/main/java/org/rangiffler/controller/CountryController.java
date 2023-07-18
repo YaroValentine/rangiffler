@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 public class CountryController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CountryController.class);
     private final GrpcCountryClient cc;
 
     @Autowired

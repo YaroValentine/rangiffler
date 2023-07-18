@@ -18,8 +18,6 @@ import static org.rangiffler.model.PhotoJson.fromGrpcMessage;
 @RestController
 public class GrpcPhotoClient {
 
-    private static final Logger LOG = LoggerFactory.getLogger(GrpcPhotoClient.class);
-
     @GrpcClient("grpcPhotoClient")
     private RangifflerPhotoServiceGrpc.RangifflerPhotoServiceBlockingStub photoStub;
 

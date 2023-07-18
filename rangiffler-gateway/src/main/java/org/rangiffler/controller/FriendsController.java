@@ -18,7 +18,6 @@ import java.util.List;
 @RestController
 public class FriendsController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(FriendsController.class);
     private final RestUserClient userDataClient;
 
     @Autowired
@@ -27,10 +26,9 @@ public class FriendsController {
     }
 
     @GetMapping("/friends")
-    public List<UserJson> friends(@AuthenticationPrincipal Jwt principal,
-                                  @RequestParam boolean includePending) {
+    public List<UserJson> friends(@AuthenticationPrincipal Jwt principal) {
         String username = principal.getClaim("sub");
-        return userDataClient.friends(username, includePending);
+        return userDataClient.friends(username);
     }
 
     @GetMapping("invitations")

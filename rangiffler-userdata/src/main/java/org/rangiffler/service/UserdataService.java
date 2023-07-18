@@ -16,7 +16,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 @Component
-//@GrpcService
 public class UserdataService {
 
     private final UserRepository userRepository;
@@ -89,7 +88,7 @@ public class UserdataService {
     }
 
     public @Nonnull
-    List<UserJson> friends(@Nonnull String username, boolean includePending) {
+    List<UserJson> friends(@Nonnull String username) {
         UserEntity userEntity = userRepository.findByUsername(username);
         if (userEntity == null) {
             throw new NotFoundException("Can`t find user by username: " + username);
@@ -97,7 +96,7 @@ public class UserdataService {
         return userEntity
                 .getFriends()
                 .stream()
-                .filter(fe -> includePending || !fe.isPending())
+                .filter(fe -> !fe.isPending())
                 .map(fe -> UserJson.fromEntity(fe.getFriend(), fe.isPending()
                         ? FriendState.INVITATION_SENT
                         : FriendState.FRIEND))

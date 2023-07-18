@@ -13,8 +13,6 @@ import java.util.List;
 @RestController
 public class FriendsController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(FriendsController.class);
-
     private final UserdataService userService;
 
     @Autowired
@@ -23,9 +21,8 @@ public class FriendsController {
     }
 
     @GetMapping("/friends")
-    public List<UserJson> friends(@RequestParam String username,
-                                  @RequestParam boolean includePending) {
-        return userService.friends(username, includePending);
+    public List<UserJson> friends(@RequestParam String username) {
+        return userService.friends(username);
     }
 
     @GetMapping("/invitations")
