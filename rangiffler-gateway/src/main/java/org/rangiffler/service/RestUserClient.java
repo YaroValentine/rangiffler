@@ -35,7 +35,7 @@ public class RestUserClient implements IUserdataClient {
     List<UserJson> allUsers(@Nonnull String username) {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("username", username);
-        URI uri = UriComponentsBuilder.fromHttpUrl(rangifflerUserdataBaseUri + "/users").queryParams(params).build().toUri();
+            URI uri = UriComponentsBuilder.fromHttpUrl(rangifflerUserdataBaseUri + "/users").queryParams(params).build().toUri();
 
         return webClient.get()
                 .uri(uri)

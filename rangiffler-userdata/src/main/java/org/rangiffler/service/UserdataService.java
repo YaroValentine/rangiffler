@@ -4,7 +4,7 @@ import jakarta.annotation.Nonnull;
 import org.rangiffler.data.FriendsEntity;
 import org.rangiffler.data.UserEntity;
 import org.rangiffler.data.model.FriendJson;
-import org.rangiffler.data.model.FriendState;
+import org.rangiffler.data.model.FriendStatus;
 import org.rangiffler.data.model.UserJson;
 import org.rangiffler.data.repository.UserRepository;
 import org.rangiffler.exception.NotFoundException;
@@ -70,18 +70,18 @@ public class UserdataService {
                 if (inviteToMe.isPresent()) {
                     FriendsEntity invite = inviteToMe.get();
                     result.put(user.getId(), UserJson.fromEntity(user, invite.isPending()
-                            ? FriendState.INVITATION_RECEIVED
-                            : FriendState.FRIEND));
+                            ? FriendStatus.INVITATION_RECEIVED
+                            : FriendStatus.FRIEND));
                 }
                 if (inviteFromMe.isPresent()) {
                     FriendsEntity invite = inviteFromMe.get();
                     result.put(user.getId(), UserJson.fromEntity(user, invite.isPending()
-                            ? FriendState.INVITATION_SENT
-                            : FriendState.FRIEND));
+                            ? FriendStatus.INVITATION_SENT
+                            : FriendStatus.FRIEND));
                 }
-            }
+            } 
             if (!result.containsKey(user.getId())) {
-                result.put(user.getId(), UserJson.fromEntity(user));
+                result.put(user.getId(), UserJson.fromEntity(user, FriendStatus.NOT_FRIEND));
             }
         }
         return new ArrayList<>(result.values());
@@ -98,8 +98,8 @@ public class UserdataService {
                 .stream()
                 .filter(fe -> !fe.isPending())
                 .map(fe -> UserJson.fromEntity(fe.getFriend(), fe.isPending()
-                        ? FriendState.INVITATION_SENT
-                        : FriendState.FRIEND))
+                        ? FriendStatus.INVITATION_SENT
+                        : FriendStatus.FRIEND))
                 .toList();
     }
 
@@ -113,7 +113,7 @@ public class UserdataService {
                 .getInvites()
                 .stream()
                 .filter(FriendsEntity::isPending)
-                .map(fe -> UserJson.fromEntity(fe.getUser(), FriendState.INVITATION_RECEIVED))
+                .map(fe -> UserJson.fromEntity(fe.getUser(), FriendStatus.INVITATION_RECEIVED))
                 .toList();
     }
 
@@ -128,7 +128,7 @@ public class UserdataService {
         }
         currentUser.addFriends(true, friendEntity);
         userRepository.save(currentUser);
-        return UserJson.fromEntity(friendEntity, FriendState.INVITATION_SENT);
+        return UserJson.fromEntity(friendEntity, FriendStatus.INVITATION_SENT);
     }
 
     public @Nonnull
@@ -156,8 +156,8 @@ public class UserdataService {
                 .getFriends()
                 .stream()
                 .map(fe -> UserJson.fromEntity(fe.getFriend(), fe.isPending()
-                        ? FriendState.INVITATION_SENT
-                        : FriendState.FRIEND))
+                        ? FriendStatus.INVITATION_SENT
+                        : FriendStatus.FRIEND))
                 .toList();
     }
 
@@ -182,7 +182,7 @@ public class UserdataService {
         return currentUser.getInvites()
                 .stream()
                 .filter(FriendsEntity::isPending)
-                .map(fe -> UserJson.fromEntity(fe.getUser(), FriendState.INVITATION_RECEIVED))
+                .map(fe -> UserJson.fromEntity(fe.getUser(), FriendStatus.INVITATION_RECEIVED))
                 .toList();
     }
 
@@ -210,8 +210,8 @@ public class UserdataService {
                 .getFriends()
                 .stream()
                 .map(fe -> UserJson.fromEntity(fe.getFriend(), fe.isPending()
-                        ? FriendState.INVITATION_SENT
-                        : FriendState.FRIEND))
+                        ? FriendStatus.INVITATION_SENT
+                        : FriendStatus.FRIEND))
                 .toList();
     }
 

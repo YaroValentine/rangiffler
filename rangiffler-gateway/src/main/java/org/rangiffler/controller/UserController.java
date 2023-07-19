@@ -1,5 +1,6 @@
 package org.rangiffler.controller;
 
+import org.rangiffler.model.FriendStatus;
 import org.rangiffler.model.UserJson;
 import org.rangiffler.service.RestUserClient;
 import org.slf4j.Logger;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class UserController {

@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS friends
 (
     user_id   BINARY(16) NOT NULL,
     friend_id BINARY(16) NOT NULL,
-    pending   BOOLEAN    NOT NULL,
+    pending   BOOLEAN    NOT NULL DEFAULT TRUE,
     PRIMARY KEY (user_id, friend_id),
     FOREIGN KEY (user_id) REFERENCES users (id),
     FOREIGN KEY (friend_id) REFERENCES users (id)

@@ -28,7 +28,7 @@ public class UserJson {
 
     @JsonProperty("friendStatus")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private FriendState friendStatus;
+    private FriendStatus friendStatus;
 
     public UserJson() {
     }
@@ -73,11 +73,11 @@ public class UserJson {
         this.avatar = avatar;
     }
 
-    public FriendState getFriendState() {
+    public FriendStatus getFriendStatus() {
         return friendStatus;
     }
 
-    public void setFriendState(FriendState friendStatus) {
+    public void setFriendStatus(FriendStatus friendStatus) {
         this.friendStatus = friendStatus;
     }
 
@@ -92,9 +92,9 @@ public class UserJson {
         return usr;
     }
 
-    public static UserJson fromEntity(UserEntity entity, FriendState friendStatus) {
+    public static UserJson fromEntity(UserEntity entity, FriendStatus friendStatus) {
         UserJson userJson = fromEntity(entity);
-        userJson.setFriendState(friendStatus);
+        userJson.setFriendStatus(friendStatus);
         return userJson;
     }
 

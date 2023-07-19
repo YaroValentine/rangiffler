@@ -61,8 +61,8 @@ public class FriendsController {
     @PostMapping("friends/remove")
     public @Nonnull
     List<UserJson> removeFriendFromUser(@AuthenticationPrincipal Jwt principal,
-                                        @RequestParam("username") String friendUsername) {
+                                        @RequestBody UserJson user) {
         String username = principal.getClaim("sub");
-        return userDataClient.removeFriend(username, friendUsername);
+        return userDataClient.removeFriend(username, user.getUsername());
     }
 }
