@@ -40,16 +40,16 @@ public class FriendsController {
 
     @PostMapping("friends/submit")
     public UserJson acceptInvitation(@AuthenticationPrincipal Jwt principal,
-                                           @Validated @RequestBody UserJson user) {
+                                     @Validated @RequestBody UserJson friend) {
         String username = principal.getClaim("sub");
-        return userDataClient.acceptInvitation(username, user);
+        return userDataClient.acceptInvitation(username, friend);
     }
 
     @PostMapping("friends/decline")
-    public List<UserJson> declineInvitation(@AuthenticationPrincipal Jwt principal,
-                                            @Validated @RequestBody FriendJson invitation) {
+    public UserJson declineInvitation(@AuthenticationPrincipal Jwt principal,
+                                      @Validated @RequestBody FriendJson friend) {
         String username = principal.getClaim("sub");
-        return userDataClient.declineInvitation(username, invitation);
+        return userDataClient.declineInvitation(username, friend);
     }
 
     @PostMapping("users/invite/")
@@ -60,10 +60,9 @@ public class FriendsController {
     }
 
     @PostMapping("friends/remove")
-    public @Nonnull
-    List<UserJson> removeFriendFromUser(@AuthenticationPrincipal Jwt principal,
-                                        @RequestBody UserJson user) {
+    public UserJson removeFriend(@AuthenticationPrincipal Jwt principal,
+                                 @RequestBody() UserJson friend) {
         String username = principal.getClaim("sub");
-        return userDataClient.removeFriend(username, user.getUsername());
+        return userDataClient.removeFriend(username, friend);
     }
 }

@@ -28,7 +28,7 @@ public interface IUserdataClient {
                               @Nonnull UserJson friend);
 
     @Nonnull
-    List<UserJson> declineInvitation(@Nonnull String username,
+    UserJson declineInvitation(@Nonnull String username,
                                      @Nonnull FriendJson invitation);
 
     @Nonnull
@@ -36,7 +36,7 @@ public interface IUserdataClient {
                        @Nonnull FriendJson friend);
 
     @Nonnull
-    List<UserJson> removeFriend(@Nonnull String username,
-                                @Nonnull String friendUsername);
+    UserJson removeFriend(@Nonnull String username,
+                                @Nonnull UserJson friend);
 
 }

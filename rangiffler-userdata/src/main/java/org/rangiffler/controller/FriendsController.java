@@ -3,8 +3,6 @@ package org.rangiffler.controller;
 import org.rangiffler.data.model.FriendJson;
 import org.rangiffler.data.model.UserJson;
 import org.rangiffler.service.UserdataService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,13 +30,13 @@ public class FriendsController {
 
     @PostMapping("/acceptInvitation")
     public UserJson acceptInvitation(@RequestParam String username,
-                                           @RequestBody FriendJson invitation) {
+                                     @RequestBody FriendJson invitation) {
         return userService.acceptInvitation(username, invitation);
     }
 
     @PostMapping("/friends/decline")
-    public List<UserJson> declineInvitation(@RequestParam String username,
-                                            @RequestBody FriendJson invitation) {
+    public UserJson declineInvitation(@RequestParam String username,
+                                      @RequestBody UserJson invitation) {
         return userService.declineInvitation(username, invitation);
     }
 
@@ -48,9 +46,10 @@ public class FriendsController {
         return userService.addFriend(username, friend);
     }
 
-    @DeleteMapping("/friends/remove")
-    public List<UserJson> removeFriend(@RequestParam String username,
-                                       @RequestParam String friendUsername) {
-        return userService.removeFriend(username, friendUsername);
+    @PostMapping("/removeFriend")
+    public UserJson removeFriend(@RequestParam String username,
+                                 @RequestBody UserJson friend) {
+        return userService.removeFriend(username, friend.getUsername());
     }
+
 }

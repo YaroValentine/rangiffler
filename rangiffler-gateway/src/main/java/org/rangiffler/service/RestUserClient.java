@@ -35,7 +35,7 @@ public class RestUserClient implements IUserdataClient {
     List<UserJson> allUsers(@Nonnull String username) {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("username", username);
-            URI uri = UriComponentsBuilder.fromHttpUrl(rangifflerUserdataBaseUri + "/users").queryParams(params).build().toUri();
+        URI uri = UriComponentsBuilder.fromHttpUrl(rangifflerUserdataBaseUri + "/users").queryParams(params).build().toUri();
 
         return webClient.get()
                 .uri(uri)
@@ -120,8 +120,8 @@ public class RestUserClient implements IUserdataClient {
 
     @Override
     public @Nonnull
-    List<UserJson> declineInvitation(@Nonnull String username,
-                                     @Nonnull FriendJson invitation) {
+    UserJson declineInvitation(@Nonnull String username,
+                               @Nonnull FriendJson invitation) {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("username", username);
         URI uri = UriComponentsBuilder.fromHttpUrl(rangifflerUserdataBaseUri + "/friends/decline").queryParams(params).build().toUri();
@@ -130,8 +130,7 @@ public class RestUserClient implements IUserdataClient {
                 .uri(uri)
                 .body(Mono.just(invitation), FriendJson.class)
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<List<UserJson>>() {
-                })
+                .bodyToMono(UserJson.class)
                 .block();
     }
 
@@ -150,20 +149,18 @@ public class RestUserClient implements IUserdataClient {
                 .block();
     }
 
-    @Override
     public @Nonnull
-    List<UserJson> removeFriend(@Nonnull String username,
-                                @Nonnull String friendUsername) {
+    UserJson removeFriend(@Nonnull String username,
+                          @Nonnull UserJson friend) {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("username", username);
-        params.add("friendUsername", friendUsername);
-        URI uri = UriComponentsBuilder.fromHttpUrl(rangifflerUserdataBaseUri + "/friends/remove").queryParams(params).build().toUri();
+        URI uri = UriComponentsBuilder.fromHttpUrl(rangifflerUserdataBaseUri + "/removeFriend").queryParams(params).build().toUri();
 
-        return webClient.delete()
+        return webClient.post()
                 .uri(uri)
+                .body(Mono.just(friend), UserJson.class)
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<List<UserJson>>() {
-                })
+                .bodyToMono(UserJson.class)
                 .block();
     }
     //endregion

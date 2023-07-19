@@ -157,7 +157,7 @@ public class UserdataService {
 
     @Transactional
     public @Nonnull
-    List<UserJson> declineInvitation(@Nonnull String username, @Nonnull FriendJson invitation) {
+    UserJson declineInvitation(@Nonnull String username, @Nonnull UserJson invitation) {
         UserEntity currentUser = userRepository.findByUsername(username);
         UserEntity friendToDecline = userRepository.findByUsername(invitation.getUsername());
         if (currentUser == null) {
@@ -173,16 +173,12 @@ public class UserdataService {
         userRepository.save(currentUser);
         userRepository.save(friendToDecline);
 
-        return currentUser.getInvites()
-                .stream()
-                .filter(FriendsEntity::isPending)
-                .map(fe -> UserJson.fromEntity(fe.getUser(), FriendStatus.INVITATION_RECEIVED))
-                .toList();
+        return UserJson.fromEntity(currentUser, FriendStatus.NOT_FRIEND);
     }
 
     @Transactional
     public @Nonnull
-    List<UserJson> removeFriend(@Nonnull String username, @Nonnull String friendUsername) {
+    UserJson removeFriend(@Nonnull String username, @Nonnull String friendUsername) {
         UserEntity currentUser = userRepository.findByUsername(username);
         UserEntity friendToRemove = userRepository.findByUsername(friendUsername);
         if (currentUser == null) {
@@ -200,13 +196,7 @@ public class UserdataService {
         userRepository.save(currentUser);
         userRepository.save(friendToRemove);
 
-        return currentUser
-                .getFriends()
-                .stream()
-                .map(fe -> UserJson.fromEntity(fe.getFriend(), fe.isPending()
-                        ? FriendStatus.INVITATION_SENT
-                        : FriendStatus.FRIEND))
-                .toList();
+        return UserJson.fromEntity(friendToRemove, FriendStatus.NOT_FRIEND);
     }
 
 }
