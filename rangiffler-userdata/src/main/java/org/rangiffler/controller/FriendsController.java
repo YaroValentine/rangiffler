@@ -31,7 +31,7 @@ public class FriendsController {
     }
 
     @PostMapping("/acceptInvitation")
-    public List<UserJson> acceptInvitation(@RequestParam String username,
+    public UserJson acceptInvitation(@RequestParam String username,
                                            @RequestBody FriendJson invitation) {
         return userService.acceptInvitation(username, invitation);
     }

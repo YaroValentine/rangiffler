@@ -132,7 +132,7 @@ public class UserdataService {
     }
 
     public @Nonnull
-    List<UserJson> acceptInvitation(@Nonnull String username, @Nonnull FriendJson invitation) {
+    UserJson acceptInvitation(@Nonnull String username, @Nonnull FriendJson invitation) {
         UserEntity currentUser = userRepository.findByUsername(username);
         UserEntity inviteUser = userRepository.findByUsername(invitation.getUsername());
         if (currentUser == null) {
@@ -152,13 +152,7 @@ public class UserdataService {
         currentUser.addFriends(false, inviteUser);
         userRepository.save(currentUser);
 
-        return currentUser
-                .getFriends()
-                .stream()
-                .map(fe -> UserJson.fromEntity(fe.getFriend(), fe.isPending()
-                        ? FriendStatus.INVITATION_SENT
-                        : FriendStatus.FRIEND))
-                .toList();
+        return UserJson.fromEntity(inviteUser, FriendStatus.FRIEND);
     }
 
     @Transactional

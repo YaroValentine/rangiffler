@@ -24,12 +24,8 @@ public interface IUserdataClient {
     List<UserJson> invitations(@Nonnull String username);
 
     @Nonnull
-    List<UserJson> acceptInvitation(@Nonnull String username,
-                                    @Nonnull FriendJson invitation);
-
-    @Nonnull
-    UserJson acceptInvitationAndReturnFriend(@Nonnull String username,
-                                             @Nonnull FriendJson invitation);
+    UserJson acceptInvitation(@Nonnull String username,
+                              @Nonnull UserJson friend);
 
     @Nonnull
     List<UserJson> declineInvitation(@Nonnull String username,

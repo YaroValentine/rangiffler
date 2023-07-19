@@ -104,29 +104,18 @@ public class RestUserClient implements IUserdataClient {
 
     @Override
     public @Nonnull
-    List<UserJson> acceptInvitation(@Nonnull String username,
-                                    @Nonnull FriendJson invitation) {
+    UserJson acceptInvitation(@Nonnull String username,
+                              @Nonnull UserJson friend) {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("username", username);
         URI uri = UriComponentsBuilder.fromHttpUrl(rangifflerUserdataBaseUri + "/acceptInvitation").queryParams(params).build().toUri();
 
         return webClient.post()
                 .uri(uri)
-                .body(Mono.just(invitation), FriendJson.class)
+                .body(Mono.just(friend), UserJson.class)
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<List<UserJson>>() {
-                })
+                .bodyToMono(UserJson.class)
                 .block();
-    }
-
-    @Override
-    public @Nonnull
-    UserJson acceptInvitationAndReturnFriend(@Nonnull String username,
-                                             @Nonnull FriendJson invitation) {
-        return acceptInvitation(username, invitation).stream()
-                .filter(friend -> friend.getUsername().equals(invitation.getUsername()))
-                .findFirst()
-                .orElseThrow();
     }
 
     @Override
