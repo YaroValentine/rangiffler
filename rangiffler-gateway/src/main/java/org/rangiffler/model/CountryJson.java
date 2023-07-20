@@ -34,7 +34,7 @@ public class CountryJson {
 
     public Country toGrpcMessage() {
         return Country.newBuilder().setCountryCode(countryCode)
-                .setId(/*id != null ? */id.toString()/* : ""*/) //todo check :?
+                .setId(id.toString())
                 .setCountryName(countryName)
                 .build();
     }
