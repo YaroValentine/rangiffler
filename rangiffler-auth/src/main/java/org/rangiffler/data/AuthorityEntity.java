@@ -1,4 +1,4 @@
-package org.rangifflerauth.data;
+package org.rangiffler.data;
 
 import jakarta.persistence.*;
 

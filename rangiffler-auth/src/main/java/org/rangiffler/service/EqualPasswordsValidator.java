@@ -1,7 +1,7 @@
-package org.rangifflerauth.service;
+package org.rangiffler.service;
 
-import org.rangifflerauth.model.EqualPasswords;
-import org.rangifflerauth.model.RegistrationModel;
+import org.rangiffler.model.EqualPasswords;
+import org.rangiffler.model.RegistrationModel;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

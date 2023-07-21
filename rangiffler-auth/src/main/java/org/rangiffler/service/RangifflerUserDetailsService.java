@@ -1,8 +1,8 @@
-package org.rangifflerauth.service;
+package org.rangiffler.service;
 
-import org.rangifflerauth.data.UserEntity;
-import org.rangifflerauth.data.repository.UserRepository;
-import org.rangifflerauth.domain.RangifflerUserPrincipal;
+import org.rangiffler.data.UserEntity;
+import org.rangiffler.data.repository.UserRepository;
+import org.rangiffler.domain.RangifflerUserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

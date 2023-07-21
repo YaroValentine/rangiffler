@@ -2,8 +2,6 @@ package org.rangiffler.controller;
 
 import org.rangiffler.data.model.UserJson;
 import org.rangiffler.service.UserdataService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +24,7 @@ public class UserController {
 
     @GetMapping("/currentUser")
     public UserJson currentUser(@RequestParam String username) {
-        return userService.getCurrentUserOrCreateIfAbsent(username);
+        return userService.getCurrentUser(username);
     }
 
     @PatchMapping("/currentUser")

@@ -1,6 +1,7 @@
 package org.rangiffler.service;
 
 import jakarta.annotation.Nonnull;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.rangiffler.data.FriendsEntity;
 import org.rangiffler.data.UserEntity;
 import org.rangiffler.data.model.FriendJson;
@@ -8,7 +9,11 @@ import org.rangiffler.data.model.FriendStatus;
 import org.rangiffler.data.model.UserJson;
 import org.rangiffler.data.repository.UserRepository;
 import org.rangiffler.exception.NotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,11 +23,27 @@ import java.util.*;
 @Component
 public class UserdataService {
 
+    private static final Logger LOG = LoggerFactory.getLogger(UserdataService.class);
+
     private final UserRepository userRepository;
 
     @Autowired
     public UserdataService(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    @KafkaListener(topics = "users", groupId = "userdata")
+    public void listener(@Payload UserJson user, ConsumerRecord<String, UserJson> cr) {
+        LOG.info("### Kafka topic [users] received message: " + user.getUsername());
+        LOG.info("### Kafka consumer record: " + cr.toString());
+        UserEntity userDataEntity = new UserEntity();
+        userDataEntity.setUsername(user.getUsername());
+        UserEntity userEntity = userRepository.save(userDataEntity);
+        LOG.info(String.format(
+                "### User '%s' successfully saved to database with id: %s",
+                user.getUsername(),
+                userEntity.getId()
+        ));
     }
 
     public @Nonnull
@@ -40,12 +61,10 @@ public class UserdataService {
     }
 
     public @Nonnull
-    UserJson getCurrentUserOrCreateIfAbsent(@Nonnull String username) {
+    UserJson getCurrentUser(@Nonnull String username) {
         UserEntity userDataEntity = userRepository.findByUsername(username);
         if (userDataEntity == null) {
-            userDataEntity = new UserEntity();
-            userDataEntity.setUsername(username);
-            return UserJson.fromEntity(userRepository.save(userDataEntity));
+            throw new NotFoundException("Can`t find user by username: " + username);
         } else {
             return UserJson.fromEntity(userDataEntity);
         }
@@ -79,7 +98,7 @@ public class UserdataService {
                             ? FriendStatus.INVITATION_SENT
                             : FriendStatus.FRIEND));
                 }
-            } 
+            }
             if (!result.containsKey(user.getId())) {
                 result.put(user.getId(), UserJson.fromEntity(user, FriendStatus.NOT_FRIEND));
             }

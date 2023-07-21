@@ -1,7 +1,8 @@
-package org.rangifflerauth.controller;
+package org.rangiffler.controller;
 
-import org.rangifflerauth.model.RegistrationModel;
-import org.rangifflerauth.service.UserService;
+import org.rangiffler.data.model.UserJson;
+import org.rangiffler.model.RegistrationModel;
+import org.rangiffler.service.UserService;
 import jakarta.annotation.Nonnull;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BeanPropertyBindingResult;
@@ -32,12 +34,14 @@ public class RegisterController {
 
     private final UserService userService;
     private final String rangifflerFrontUri;
+    private final KafkaTemplate kafkaTemplate;
 
     @Autowired
     public RegisterController(UserService userService,
-                              @Value("${rangiffler-front.base-uri}") String rangifflerFrontUri) {
+                              @Value("${rangiffler-front.base-uri}") String rangifflerFrontUri, KafkaTemplate kafkaTemplate) {
         this.userService = userService;
         this.rangifflerFrontUri = rangifflerFrontUri;
+        this.kafkaTemplate = kafkaTemplate;
     }
 
     @GetMapping("/register")
@@ -59,6 +63,10 @@ public class RegisterController {
                         registrationModel.getUsername(),
                         registrationModel.getPassword()
                 );
+                UserJson kafkaMsg = new UserJson();
+                kafkaMsg.setUsername(registeredUserName);
+                kafkaTemplate.send("users", kafkaMsg);
+
                 response.setStatus(HttpServletResponse.SC_CREATED);
                 model.addAttribute(MODEL_USERNAME_ATTR, registeredUserName);
             } catch (DataIntegrityViolationException e) {

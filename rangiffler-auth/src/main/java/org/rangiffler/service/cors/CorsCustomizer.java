@@ -1,4 +1,4 @@
-package org.rangifflerauth.service.cors;
+package org.rangiffler.service.cors;
 
 import jakarta.annotation.Nonnull;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
-package org.rangifflerauth.config;
+package org.rangiffler.config;
 
-import org.rangifflerauth.service.cors.CookieCsrfFilter;
-import org.rangifflerauth.service.cors.CorsCustomizer;
+import org.rangiffler.service.cors.CookieCsrfFilter;
+import org.rangiffler.service.cors.CorsCustomizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package org.rangifflerauth.service.cors;
+package org.rangiffler.service.cors;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

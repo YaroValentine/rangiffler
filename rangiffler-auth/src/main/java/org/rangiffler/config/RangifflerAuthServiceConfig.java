@@ -1,10 +1,10 @@
-package org.rangifflerauth.config;
+package org.rangiffler.config;
 
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
-import org.rangifflerauth.config.keys.KeyManager;
-import org.rangifflerauth.service.cors.CorsCustomizer;
+import org.rangiffler.config.keys.KeyManager;
+import org.rangiffler.service.cors.CorsCustomizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

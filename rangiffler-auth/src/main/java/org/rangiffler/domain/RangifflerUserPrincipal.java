@@ -1,6 +1,6 @@
-package org.rangifflerauth.domain;
+package org.rangiffler.domain;
 
-import org.rangifflerauth.data.UserEntity;
+import org.rangiffler.data.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

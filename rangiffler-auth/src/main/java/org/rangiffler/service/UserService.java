@@ -1,9 +1,9 @@
-package org.rangifflerauth.service;
+package org.rangiffler.service;
 
-import org.rangifflerauth.data.Authority;
-import org.rangifflerauth.data.AuthorityEntity;
-import org.rangifflerauth.data.UserEntity;
-import org.rangifflerauth.data.repository.UserRepository;
+import org.rangiffler.data.Authority;
+import org.rangiffler.data.AuthorityEntity;
+import org.rangiffler.data.UserEntity;
+import org.rangiffler.data.repository.UserRepository;
 import jakarta.annotation.Nonnull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
