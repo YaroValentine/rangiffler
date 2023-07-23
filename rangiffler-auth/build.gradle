@@ -26,10 +26,10 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-/*docker {
+docker {
     dependsOn build
-    name "dtuchs/rangiffler-auth:${project.version}"
-    tag 'latest', 'dtuchs/rangiffler-auth:latest'
+    name "razval/rangiffler-auth:${project.version}"
+    tag 'latest', 'razval/rangiffler-auth:latest'
     files bootJar.archiveFile
     buildArgs([APP_VER: project.version, DOCKER: project.ext.dockerImage])
     noCache true
@@ -38,7 +38,7 @@ dependencies {
 task dockerRmi(type: Exec) {
     workingDir "${buildDir}"
     commandLine 'bash', '-c', "docker rmi -f \$(docker images | grep 'rangiffler')\n"
-}*/
+}
 
 tasks.named('test') {
     useJUnitPlatform()

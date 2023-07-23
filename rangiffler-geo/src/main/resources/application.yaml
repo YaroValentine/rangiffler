@@ -52,14 +52,13 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-
 ---
 spring:
   config:
     activate:
       on-profile: 'docker'
   datasource:
-    url: jdbc:mysql://localhost:3306/rangiffler-geo?serverTimezone=UTC&createDatabaseIfNotExist=true
+    url: jdbc:mysql://rangiffler-all-db:3306/rangiffler-geo?serverTimezone=UTC&createDatabaseIfNotExist=true
   jpa:
     hibernate:
       ddl-auto: update

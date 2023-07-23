@@ -14,7 +14,6 @@ logging:
     org.springframework.web: DEBUG
     org.springframework.security: DEBUG
     org.springframework.security.oauth2: DEBUG
-
 ---
 spring:
   config:
@@ -25,7 +24,6 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: 'http://127.0.0.1:9000'
-
 grpc:
   client:
     grpcCountriesClient:
@@ -42,5 +40,32 @@ rangiffler-userdata:
   base-uri: 'http://127.0.0.1:9010'
 rangiffler-geo:
   base-uri: 'http://127.0.0.1:9020'
-rangiffler-photo:
+rangiffler-photos:
   base-uri: 'http://127.0.0.1:9030'
+---
+spring:
+  config:
+    activate:
+      on-profile: 'docker'
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: 'http://127.0.0.1:9000'
+grpc:
+  client:
+    grpcCountriesClient:
+      address: 'static://geo.rangiffler.dc:9021'
+      negotiationType: PLAINTEXT
+    grpcPhotoClient:
+      address: 'static://photo.rangiffler.dc:9031'
+      negotiationType: PLAINTEXT
+
+rangiffler-photos:
+  base-uri: 'http://photo.rangiffler.dc:9030'
+rangiffler-users:
+  base-uri: 'http://users.rangiffler.dc:9010'
+rangiffler-geo:
+  base-uri: 'http://geo.rangiffler.dc:9020'
+rangiffler-front:
+  base-uri: 'http://frontend.rangiffler.dc'

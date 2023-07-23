@@ -44,44 +44,6 @@ sourceSets {
     }
 }
 
-
-tasks.register('genJaxb') {
-    ext.sourcesDir = "${buildDir}/generated-sources/jaxb"
-    ext.classesDir = "${buildDir}/classes/jaxb"
-    ext.schema = "userdata.wsdl"
-
-    outputs.dir classesDir
-
-    doLast() {
-        project.ant {
-            taskdef name: "xjc", classname: "com.sun.tools.xjc.XJCTask",
-                    classpath: configurations.jaxb.asPath
-            mkdir(dir: sourcesDir)
-            mkdir(dir: classesDir)
-
-            xjc(destdir: sourcesDir, schema: schema,
-                    package: "guru.qa.niffler.userdata.wsdl") {
-                arg(value: "-wsdl")
-                produces(dir: sourcesDir, includes: "**/*.java")
-            }
-
-            javac(destdir: classesDir, source: 17, target: 17, debug: true,
-                    debugLevel: "lines,vars,source",
-                    classpath: configurations.jaxb.asPath) {
-                src(path: sourcesDir)
-                include(name: "**/*.java")
-                include(name: "*.java")
-            }
-
-            copy(todir: classesDir) {
-                fileset(dir: sourcesDir, erroronmissingdir: false) {
-                    exclude(name: "**/*.java")
-                }
-            }
-        }
-    }
-}
-
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
 
@@ -128,11 +90,6 @@ dependencies {
     // Wiremock
     testImplementation 'com.github.tomakehurst:wiremock-jre8:2.35.0'
     testImplementation 'com.github.tomakehurst:wiremock-standalone:2.27.2'
-    // SOAP
-    testImplementation 'com.sun.xml.messaging.saaj:saaj-impl:3.0.1'
-    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
-    implementation(files(genJaxb.classesDir).builtBy(genJaxb))
-    jaxb 'org.glassfish.jaxb:jaxb-xjc:4.0.1'
     // Kafka
     testImplementation 'org.apache.kafka:kafka-clients:3.5.0'
 }

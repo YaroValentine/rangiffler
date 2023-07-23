@@ -11,7 +11,6 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
 @Configuration
-@Profile("local") //todo Check it local profile may be removed
 public class SecurityConfig {
 
     private final CorsCustomizer corsCustomizer;
@@ -32,7 +31,6 @@ public class SecurityConfig {
                 .jwt();
 
         return http.build();
-
     }
 
 }

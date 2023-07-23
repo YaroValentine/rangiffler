@@ -36,8 +36,7 @@ public class GrpcCountryService extends RangifflerCountriesServiceGrpc.Rangiffle
                                         .setCountryCode(countryEntity.getCountryCode())
                                         .build()
                         ).toList()
-                )
-                .build();
+                ).build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
