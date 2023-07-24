@@ -38,6 +38,7 @@ services:
       - ZOOKEEPER_TICK_TIME=2000
     networks:
       - rangiffler-network
+    dns_search: .
 
   kafka:
     container_name: kafka
@@ -56,6 +57,7 @@ services:
       - KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
     networks:
       - rangiffler-network
+    dns_search: .
 
   auth.rangiffler.dc:
     container_name: auth.rangiffler.dc
@@ -149,4 +151,3 @@ services:
     networks:
       - rangiffler-network
     dns_search: .
-
