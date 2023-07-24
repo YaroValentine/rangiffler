@@ -51,7 +51,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: 'http://127.0.0.1:9000'
+          issuer-uri: 'http://auth.rangiffler.dc:9000'
 grpc:
   client:
     grpcCountriesClient:
@@ -64,7 +64,7 @@ grpc:
 rangiffler-photos:
   base-uri: 'http://photo.rangiffler.dc:9030'
 rangiffler-users:
-  base-uri: 'http://users.rangiffler.dc:9010'
+  base-uri: 'http://userdata.rangiffler.dc:9010'
 rangiffler-geo:
   base-uri: 'http://geo.rangiffler.dc:9020'
 rangiffler-front:

@@ -80,4 +80,4 @@ grpc:
       negotiationType: PLAINTEXT
 
 rangiffler-users:
-  base-uri: 'http://users.rangiffler.dc:9010'
+  base-uri: 'http://userdata.rangiffler.dc:9010'
