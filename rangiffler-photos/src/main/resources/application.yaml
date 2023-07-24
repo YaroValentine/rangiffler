@@ -79,5 +79,5 @@ grpc:
       address: 'static://geo.rangiffler.dc:9021'
       negotiationType: PLAINTEXT
 
-rangiffler-users:
+rangiffler-userdata:
   base-uri: 'http://userdata.rangiffler.dc:9010'
