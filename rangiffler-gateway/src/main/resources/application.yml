@@ -58,11 +58,11 @@ grpc:
       address: 'static://geo.rangiffler.dc:9021'
       negotiationType: PLAINTEXT
     grpcPhotoClient:
-      address: 'static://photo.rangiffler.dc:9031'
+      address: 'static://photos.rangiffler.dc:9031'
       negotiationType: PLAINTEXT
 
 rangiffler-photos:
-  base-uri: 'http://photo.rangiffler.dc:9030'
+  base-uri: 'http://photos.rangiffler.dc:9030'
 rangiffler-userdata:
   base-uri: 'http://userdata.rangiffler.dc:9010'
 rangiffler-geo:

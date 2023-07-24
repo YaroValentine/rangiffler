@@ -9,13 +9,6 @@ grpc:
     port: 9031
     max-inbound-message-size: 20971520 #20MB
 
-  client:
-    global:
-      max-inbound-message-size: 20971520 #20MB
-    grpcCountriesClient:
-      address: 'static://127.0.0.1:9021'
-      negotiationType: PLAINTEXT
-
 spring:
   application:
     name: rangiffler-photo
@@ -62,6 +55,13 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+grpc:
+  client:
+    global:
+      max-inbound-message-size: 20971520 #20MB
+    grpcCountriesClient:
+      address: 'static://127.0.0.1:9021'
+      negotiationType: PLAINTEXT
 ---
 spring:
   config:
@@ -72,9 +72,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-
 grpc:
   client:
+    global:
+      max-inbound-message-size: 20971520 #20MB
     grpcCountriesClient:
       address: 'static://geo.rangiffler.dc:9021'
       negotiationType: PLAINTEXT
