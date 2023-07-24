@@ -68,7 +68,7 @@ spring:
     activate:
       on-profile: 'docker'
   kafka:
-    bootstrap-servers: 'localhost:9092'
+    bootstrap-servers: 'kafka:9092'
   datasource:
     url: 'jdbc:mysql://rangiffler-all-db:3306/rangiffler-auth?serverTimezone=UTC&createDatabaseIfNotExist=true'
     username: root
