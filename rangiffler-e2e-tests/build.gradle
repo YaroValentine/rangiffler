@@ -46,7 +46,7 @@ sourceSets {
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
-
+    testImplementation 'org.aeonbits.owner:owner:1.0.12'
     // REST
     testImplementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
     testImplementation "com.squareup.retrofit2:converter-jackson:${retrofitVersion}"
@@ -54,7 +54,7 @@ dependencies {
     // DB
     testImplementation "org.springframework.security:spring-security-crypto:${springComponentsVersion}"
     testImplementation "org.springframework:spring-jdbc:${springComponentsVersion}"
-    testImplementation 'org.postgresql:postgresql:42.5.3'
+    testImplementation 'mysql:mysql-connector-java:8.0.33'
     testImplementation 'p6spy:p6spy:3.9.1'
     testImplementation 'org.hibernate:hibernate-core:6.1.7.Final'
     testImplementation 'com.github.vertical-blank:sql-formatter:2.0.3'

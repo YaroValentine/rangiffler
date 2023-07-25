@@ -1,37 +1,41 @@
 package org.rangiffler.test.web;
 
-import io.qameta.allure.Step;
-import org.junit.jupiter.api.Test;
+import org.rangiffler.config.Config;
+import org.rangiffler.jupiter.annotation.WebTest;
+import org.rangiffler.pages.*;
 
-public class BaseWebTest {
+@WebTest
+public abstract class BaseWebTest {
 
-    @Test
-    void simpleTest() {
-        firstMethod();
-        secondMethod();
-        thirdMethod();
-        fourthMethod();
+    private MainPage mainPage;
+    private YourTravelsPage yourTravelsPage;
+    private FriendsTravelsPage friendsTravelsPage;
+    private PeopleAroundPage peopleAroundPage;
+    private LoginPage loginPage;
+    private RegistrationPage registrationPage;
+
+    public MainPage mainPage() {
+        return mainPage == null ? new MainPage() : mainPage;
     }
 
-    @Step("First method")
-    private void firstMethod() {
-        innerFirstMethod();
+    public YourTravelsPage travelsPage() {
+        return yourTravelsPage == null ? new YourTravelsPage() : yourTravelsPage;
     }
 
-    @Step("Inner first method")
-    private void innerFirstMethod() {
+    public FriendsTravelsPage friendsTravelsPage() {
+        return friendsTravelsPage == null ? new FriendsTravelsPage() : friendsTravelsPage;
     }
 
-    @Step("Second method")
-    private void secondMethod() {
+    public PeopleAroundPage peopleAroundPage() {
+        return peopleAroundPage == null ? new PeopleAroundPage() : peopleAroundPage;
     }
 
-    @Step("Third method")
-    private void thirdMethod() {
+    public LoginPage loginPage() {
+        return loginPage == null ? new LoginPage() : loginPage;
     }
 
-    @Step("Fourth method")
-    private void fourthMethod() {
+    public RegistrationPage registrationPage() {
+        return registrationPage == null ? new RegistrationPage() : registrationPage;
     }
 
 }
