@@ -10,8 +10,16 @@ public class DataUtils {
         return faker.name().username();
     }
 
+    public static String generateRandomUsername(int length) {
+        return faker.regexify("[A-Za-z0-9]{" + length + "}");
+    }
+
     public static String generateRandomPassword() {
         return faker.bothify("????####");
+    }
+
+    public static String generateRandomPassword(int length) {
+        return faker.regexify("[A-Za-z0-9]{" + length + "}");
     }
 
     public static String generateRandomName() {
