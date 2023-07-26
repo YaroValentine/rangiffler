@@ -42,6 +42,7 @@ public class RegistrationTests extends BaseWebTest {
                 .fillRegistrationForm(username, password, password)
                 .registrationPage().verifyAllowedUsernameCriteriaMessageDisplayed();
     }
+
     @Test
     @Tags({@Tag(WEB), @Tag(NEGATIVE)})
     @AllureId("9000:2003")
@@ -86,6 +87,7 @@ public class RegistrationTests extends BaseWebTest {
                 .fillRegistrationForm(username, password, password)
                 .registrationPage().verifyAllowedPasswordCriteriaMessageDisplayed();
     }
+
     @Test
     @Tags({@Tag(WEB), @Tag(NEGATIVE)})
     @AllureId("9000:2006")
@@ -102,4 +104,25 @@ public class RegistrationTests extends BaseWebTest {
                 .registrationPage().verifyPasswordsShouldMatchMessageDisplayed();
     }
 
+
+    @Test
+    @Tags({@Tag(WEB), @Tag(NEGATIVE)})
+    @AllureId("9000:2007")
+    @DisplayName("Error should be displayed when registering existent username")
+    void errorShouldBeDisplayedWhenRegisteringExistentUser() {
+        final String username = generateRandomUsername();
+        final String password = generateRandomPassword();
+
+        mainPage()
+                .open()
+                .clickRegistration()
+                .fillRegistrationForm(username, password, password)
+                .registrationPage().verifySuccessfulRegistrationMessageDisplayed();
+
+        mainPage()
+                .open()
+                .clickRegistration()
+                .fillRegistrationForm(username, password, password)
+                .registrationPage().verifyUserAlreadyExistsMessageDisplayed(username);
+    }
 }

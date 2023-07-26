@@ -55,4 +55,9 @@ public class RegistrationPage extends BasePage<RegistrationPage> {
         $(byText("Passwords should be equal")).shouldBe(visible);
     }
 
+    @Step("Verify 'Username `{username}` already exists' message displayed")
+    public void verifyUserAlreadyExistsMessageDisplayed(String username) {
+        $(byText(String.format("Username `%s` already exists", username))).shouldBe(visible);
+    }
+
 }
