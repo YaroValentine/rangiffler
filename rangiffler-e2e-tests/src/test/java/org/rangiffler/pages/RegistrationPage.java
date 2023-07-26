@@ -18,7 +18,7 @@ public class RegistrationPage extends BasePage<RegistrationPage> {
     private final SelenideElement formError = $(".form__error");
 
     @Override
-    public RegistrationPage checkThatPageLoaded() {
+    public RegistrationPage verifyPageLoaded() {
         header.shouldHave(text("Registration form"));
         return this;
     }

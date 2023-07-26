@@ -19,11 +19,11 @@ public abstract class BaseRestClient {
     protected final Retrofit retrofit;
 
     public BaseRestClient(String serviceBaseUrl) {
-        this(serviceBaseUrl, false, null);
+        this(serviceBaseUrl, false, new Interceptor[0]);
     }
 
     public BaseRestClient(String serviceBaseUrl, boolean followRedirect) {
-        this(serviceBaseUrl, followRedirect, null);
+        this(serviceBaseUrl, followRedirect, new Interceptor[0]);
     }
 
     public BaseRestClient(String serviceBaseUrl, boolean followRedirect, Interceptor... interceptors) {

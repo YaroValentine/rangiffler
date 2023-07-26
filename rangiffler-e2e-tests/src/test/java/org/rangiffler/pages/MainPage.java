@@ -7,32 +7,33 @@ import io.qameta.allure.Step;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static org.rangiffler.config.InitConfig.CFG;
 
 public class MainPage extends BasePage<MainPage> {
-    private final SelenideElement loginButton = $(byText("Login"));
-    private final SelenideElement registerButton = $(byText("Register"));
+    private final SelenideElement loginBtn = $(byText("Login"));
+    private final SelenideElement registerBtn = $(byText("Register"));
+
     @Override
-    @Step("Check load LandingPage")
-    public MainPage checkThatPageLoaded() {
-        loginButton.should(visible);
-        registerButton.should(visible);
+    public MainPage verifyPageLoaded() {
+        $(byText("Be like Rangiffler")).should(visible);
         return this;
     }
 
-    @Step("Open LandingPage")
+    @Step("Open Main page")
     public MainPage open() {
-        return Selenide.open(""/*configEnv.frontUrl()*/, MainPage.class);
+        return Selenide.open(CFG.getFrontUrl(), MainPage.class);
     }
 
     @Step("Click Login button")
-    public LoginPage toLogin() {
-        loginButton.click();
-        return new LoginPage();
+    public LoginPage clickLogin() {
+        loginBtn.click();
+        return loginPage();
     }
 
     @Step("Click Register button")
-    public RegistrationPage toRegistration() {
-        registerButton.click();
-        return new RegistrationPage();
+    public RegistrationPage clickRegistration() {
+        registerBtn.click();
+        return registrationPage();
     }
+
 }

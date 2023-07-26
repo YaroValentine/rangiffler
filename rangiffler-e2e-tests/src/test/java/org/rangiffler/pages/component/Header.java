@@ -2,7 +2,7 @@ package org.rangiffler.pages.component;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import niffler.page.*;
+import org.rangiffler.pages.*;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
@@ -22,20 +22,14 @@ public class Header extends BaseComponent<Header> {
         super($(".header"));
     }
 
-    public Header(SelenideElement self) {   // This example is useful for something dynamic, like a calendar
-        super(self);                        // which could be located anywhere on the page.
+    public Header(SelenideElement self) {
+        super(self);
     }
 
     @Override
-    public Header checkThatComponentDisplayed() {
-        self.$(".header__title").shouldHave(text("Niffler. The coin keeper."));
+    public Header verifyComponentDisplayed() {
+        self.$x("//h1").shouldHave(text("Rangiffler"));
         return this;
-    }
-
-    @Step("Go to Fiends page")
-    public FriendsPage goToFriendsPage() {
-        friendsPageBtn.click();
-        return new FriendsPage();
     }
 
     @Step("Go to Main page")
@@ -48,12 +42,6 @@ public class Header extends BaseComponent<Header> {
     public ProfileComponent goToProfilePage() {
         profileBtn.click();
         return new ProfileComponent();
-    }
-
-    @Step("Go to People page")
-    public PeoplePage goToPeoplePage() {
-        peopleBtn.click();
-        return new PeoplePage();
     }
 
 }

@@ -18,7 +18,6 @@ public class GenerateUserService {
 
     private static final AuthRestClient authClient = new AuthRestClient();
     private static final UserdataRestClient userdataClient = new UserdataRestClient();
-    private static final SpendRestClient spendRestClient = new SpendRestClient();
 
 
     public UserJson generateUser(@Nonnull GenerateUser annotation) {
@@ -27,35 +26,7 @@ public class GenerateUserService {
         addFriendsIfPresent(user, annotation.friends());
         addOutcomeInvitationsIfPresent(user, annotation.outcomeInvitations());
         addIncomeInvitationsIfPresent(user, annotation.incomeInvitations());
-        addCategoryIfPresent(user, annotation.categories());
-        addSpendingIfPresent(user, annotation.spends());
         return user;
-    }
-
-    private void addSpendingIfPresent(UserJson targetUser, GenerateSpend[] spends) {
-        if (isNotEmpty(spends)) {
-            for (GenerateSpend spend : spends) {
-                SpendJson spendJson = new SpendJson();
-                spendJson.setUsername(targetUser.getUsername());
-                spendJson.setAmount(spend.amount());
-                spendJson.setDescription(spend.description());
-                spendJson.setCategory("".equals(spend.category()) ? targetUser.getCategories().get(0).getCategory() : spend.category());
-                spendJson.setSpendDate(new Date());
-                spendJson.setCurrency(spend.currency());
-
-                SpendJson created = spendRestClient.addSpend(spendJson);
-                targetUser.getSpends().add(created);
-            }
-        }
-    }
-
-    private void addCategoryIfPresent(UserJson targetUser, Category[] categories) {
-        if (isNotEmpty(categories)) {
-            for (Category category : categories) {
-                CategoryJson createdCategory = spendRestClient.createCategory(targetUser.getUsername(), category.value());
-                targetUser.getCategories().add(createdCategory);
-            }
-        }
     }
 
     private void addFriendsIfPresent(UserJson targetUser, Friend[] friends) {

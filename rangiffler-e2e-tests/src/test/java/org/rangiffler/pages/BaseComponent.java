@@ -10,5 +10,5 @@ public abstract class BaseComponent<T extends BaseComponent> {
         this.self = self;
     }
 
-    public abstract T checkThatComponentDisplayed();
+    public abstract T verifyComponentDisplayed();
 }

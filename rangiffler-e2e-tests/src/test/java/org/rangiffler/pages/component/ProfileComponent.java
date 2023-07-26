@@ -26,7 +26,7 @@ public class ProfileComponent extends BasePage<ProfileComponent> {
             spendingCategoriesTbl = $(".main-content__section-categories ul");
 
     @Override
-    public ProfileComponent checkThatPageLoaded() {
+    public ProfileComponent verifyPageLoaded() {
         profileAvatar.should(visible);
         return this;
     }

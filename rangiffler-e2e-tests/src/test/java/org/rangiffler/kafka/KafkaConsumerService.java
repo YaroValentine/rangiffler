@@ -2,11 +2,10 @@ package org.rangiffler.kafka;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import guru.qa.niffler.config.Config;
-import guru.qa.niffler.model.UserJson;
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.rangiffler.config.Config;
+import org.rangiffler.model.UserJson;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -58,7 +57,7 @@ public class KafkaConsumerService implements Runnable {
         try {
             SimpleDateFormat format = new SimpleDateFormat("M-d_HHmmss");
             Handler fh = new FileHandler(pathToLogFile + "/KAFKA_MyLogFile_"
-                    + format.format(Calendar.getInstance().getTime()) + ".log");
+                                         + format.format(Calendar.getInstance().getTime()) + ".log");
             fh.setFormatter(new SimpleFormatter());
             LOG.addHandler(fh);
         } catch (Exception e) {

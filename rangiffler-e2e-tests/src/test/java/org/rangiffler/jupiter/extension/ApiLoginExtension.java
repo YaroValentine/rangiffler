@@ -18,6 +18,8 @@ import org.openqa.selenium.Cookie;
 
 import java.util.Objects;
 
+import static org.apache.commons.lang3.ArrayUtils.isEmpty;
+
 public class ApiLoginExtension implements BeforeEachCallback, AfterTestExecutionCallback {
 
     protected static final Config CFG = Config.getConfig();

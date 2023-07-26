@@ -1,9 +1,10 @@
 package org.rangiffler.pages;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import org.junit.jupiter.api.Assertions;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -13,38 +14,24 @@ public class LoginPage extends BasePage<LoginPage> {
     public final static String URL = "/login";
 
     private final SelenideElement
-            loginBtn = $(byText("Login")),
-            registerBtn = $(byText("Register")),
             usernameFld = $(byName("username")),
             passwordFld = $(byName("password")),
             signInBtn = $(byText("Sign In")),
             signUpLnk = $(byText("Sign up!"));
 
     @Override
-    public LoginPage checkThatPageLoaded() {
-        $("main__header").shouldHave(Condition.text("Welcome to magic journey with Niffler. The coin keeper"));
+    public LoginPage verifyPageLoaded() {
+        $("form__header").shouldHave(text("Login to Rangiffler"));
         return this;
     }
 
-    @Step("Click Login button")
-    public LoginPage clickLoginBtn() {
-        loginBtn.click();
-        return this;
-    }
-
-    @Step("Click Registration button")
-    public RegistrationPage clickRegisterBtn() {
-        registerBtn.click();
-        return new RegistrationPage();
-    }
-
-    @Step("Type into Username field")
+    @Step("Type into Username field {username}")
     public LoginPage typeUsername(String username) {
         usernameFld.setValue(username);
         return this;
     }
 
-    @Step("Type into Password field")
+    @Step("Type into Password field {password}")
     public LoginPage typePassword(String password) {
         passwordFld.setValue(password);
         return this;
@@ -64,12 +51,9 @@ public class LoginPage extends BasePage<LoginPage> {
 
     @Step("Login")
     public YourTravelsPage doLogin(String username, String password) {
-        clickLoginBtn()
-                .typeUsername(username)
-                .typePassword(password)
-                .clickSignInBtn();
-        return new YourTravelsPage();
+        typeUsername(username).typePassword(password).clickSignInBtn();
+        travelsPage().verifyPageLoaded();
+        return travelsPage();
     }
-
 
 }

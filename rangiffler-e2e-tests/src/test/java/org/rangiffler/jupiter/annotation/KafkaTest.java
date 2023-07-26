@@ -1,8 +1,8 @@
 package org.rangiffler.jupiter.annotation;
 
-import guru.qa.niffler.jupiter.extension.ApiLoginExtension;
-import guru.qa.niffler.jupiter.extension.GenerateUserExtension;
-import guru.qa.niffler.jupiter.extension.KafkaExtension;
+import org.rangiffler.jupiter.extension.ApiLoginExtension;
+import org.rangiffler.jupiter.extension.GenerateUserExtension;
+import org.rangiffler.jupiter.extension.KafkaExtension;
 import io.qameta.allure.junit5.AllureJunit5;
 import org.junit.jupiter.api.extension.ExtendWith;
 
