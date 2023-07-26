@@ -21,7 +21,9 @@ public class MainPage extends BasePage<MainPage> {
 
     @Step("Open Main page")
     public MainPage open() {
-        return Selenide.open(CFG.getFrontUrl(), MainPage.class);
+        Selenide.open(CFG.getFrontUrl());
+        verifyPageLoaded();
+        return this;
     }
 
     @Step("Click Login button")

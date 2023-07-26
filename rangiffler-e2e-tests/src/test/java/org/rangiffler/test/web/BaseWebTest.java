@@ -7,6 +7,10 @@ import org.rangiffler.pages.*;
 @WebTest
 public abstract class BaseWebTest {
 
+    private MainPage mainPage;
 
+    public MainPage mainPage() {
+        return mainPage == null ? new MainPage() : mainPage;
+    }
 
 }

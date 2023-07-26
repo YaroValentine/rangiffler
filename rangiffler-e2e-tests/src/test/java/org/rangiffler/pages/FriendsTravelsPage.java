@@ -1,16 +1,16 @@
 package org.rangiffler.pages;
 
-import org.rangiffler.pages.component.Header;
+import org.rangiffler.pages.component.HeaderComponent;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class FriendsTravelsPage extends BasePage<FriendsTravelsPage> {
 
     public static final String URL = "/main";
-    private final Header header = new Header();
+    private final HeaderComponent headerComponent = new HeaderComponent();
 
-    public Header getHeader() {
-        return header;
+    public HeaderComponent getHeader() {
+        return headerComponent;
     }
 
     @Override

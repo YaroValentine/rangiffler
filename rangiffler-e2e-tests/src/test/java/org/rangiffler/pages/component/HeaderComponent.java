@@ -7,7 +7,7 @@ import org.rangiffler.pages.*;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
-public class Header extends BaseComponent<Header> {
+public class HeaderComponent extends BaseComponent<HeaderComponent> {
 
     private final SelenideElement mainPageBtn = $("a[href*='main']");
 
@@ -18,16 +18,16 @@ public class Header extends BaseComponent<Header> {
             findsBtn = $("a[href*='friends']");
     ;
 
-    public Header() {
+    public HeaderComponent() {
         super($(".header"));
     }
 
-    public Header(SelenideElement self) {
+    public HeaderComponent(SelenideElement self) {
         super(self);
     }
 
     @Override
-    public Header verifyComponentDisplayed() {
+    public HeaderComponent verifyComponentDisplayed() {
         self.$x("//h1").shouldHave(text("Rangiffler"));
         return this;
     }

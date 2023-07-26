@@ -2,7 +2,6 @@ package org.rangiffler.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.Assertions;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byName;
@@ -17,7 +16,8 @@ public class LoginPage extends BasePage<LoginPage> {
             usernameFld = $(byName("username")),
             passwordFld = $(byName("password")),
             signInBtn = $(byText("Sign In")),
-            signUpLnk = $(byText("Sign up!"));
+            signUpLnk = $(byText("Sign up!")),
+            fromError = $(".form__error");
 
     @Override
     public LoginPage verifyPageLoaded() {
@@ -26,21 +26,18 @@ public class LoginPage extends BasePage<LoginPage> {
     }
 
     @Step("Type into Username field {username}")
-    public LoginPage typeUsername(String username) {
+    public void typeUsername(String username) {
         usernameFld.setValue(username);
-        return this;
     }
 
     @Step("Type into Password field {password}")
-    public LoginPage typePassword(String password) {
+    public void typePassword(String password) {
         passwordFld.setValue(password);
-        return this;
     }
 
     @Step("Click Sign In button")
-    public LoginPage clickSignInBtn() {
+    public void clickSignInBtn() {
         signInBtn.click();
-        return this;
     }
 
     @Step("Click Sign Up link")
@@ -50,10 +47,15 @@ public class LoginPage extends BasePage<LoginPage> {
     }
 
     @Step("Login")
-    public YourTravelsPage doLogin(String username, String password) {
-        typeUsername(username).typePassword(password).clickSignInBtn();
-        travelsPage().verifyPageLoaded();
-        return travelsPage();
+    public LoginPage doLogin(String username, String password) {
+        typeUsername(username);
+        typePassword(password);
+        clickSignInBtn();
+        return this;
     }
 
+    @Step("Verify error message {errorMessage}")
+    public void verifyErrorMessage(String errorMessage) {
+        fromError.shouldHave(text(errorMessage));
+    }
 }
