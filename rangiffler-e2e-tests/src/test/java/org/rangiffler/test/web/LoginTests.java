@@ -6,9 +6,10 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 
-import static org.rangiffler.test.Tag.*;
+import static org.rangiffler.jupiter.Category.*;
+import static org.rangiffler.utils.DataUtils.*;
 
-@DisplayName("WEB AUTH TESTS")
+@DisplayName("WEB: AUTH TESTS")
 public class LoginTests extends BaseWebTest {
 
     @Test
@@ -31,7 +32,7 @@ public class LoginTests extends BaseWebTest {
         mainPage()
                 .open()
                 .clickLogin()
-                .doLogin("yaro", "badpassword")
+                .doLogin("yaro", generateRandomPassword())
                 .loginPage().verifyErrorMessage("Bad credentials");
     }
 
@@ -43,7 +44,7 @@ public class LoginTests extends BaseWebTest {
         mainPage()
                 .open()
                 .clickLogin()
-                .doLogin("awegweagweag", "badpassword")
+                .doLogin(generateRandomUsername(), generateRandomPassword())
                 .loginPage().verifyErrorMessage("Bad credentials");
     }
 

@@ -1,6 +1,6 @@
-package org.rangiffler.test;
+package org.rangiffler.jupiter;
 
-public interface Tag {
+public interface Category {
 
     String
             WEB = "web",

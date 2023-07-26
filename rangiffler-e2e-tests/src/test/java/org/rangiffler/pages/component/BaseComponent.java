@@ -1,4 +1,4 @@
-package org.rangiffler.pages;
+package org.rangiffler.pages.component;
 
 import com.codeborne.selenide.SelenideElement;
 

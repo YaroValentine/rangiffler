@@ -6,20 +6,20 @@ import org.rangiffler.pages.BasePage;
 
 import java.io.File;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Condition.value;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class ProfileComponent extends BasePage<ProfileComponent> {
-
-    public final static String URL = "/profile";
 
     final SelenideElement
             profileAvatar = $("profile__avatar"),
             firstNameFld = $("input[name='firstname']"),
-            sureNameFld = $("input[name='surname']"),
-            submitBtn = $("button[type='submit']")
-     ;
+            sureNameFld = $("input[name='lastname']"),
+            submitBtn = $("button[type='submit']"),
+            uploadAvatarBtn = $("svg[data-testid=AddAPhotoIcon]"),
+            userName = $x("//p[contains(@class,'body2 css-e784if')]");
 
     @Override
     public ProfileComponent verifyPageLoaded() {
@@ -45,15 +45,14 @@ public class ProfileComponent extends BasePage<ProfileComponent> {
         return this;
     }
 
-
-    @Step("Click on Avatar")
-    public ProfileComponent clickOnAvatar() {
-        profileAvatar.click();
+    @Step("Upload an Avatar")
+    public ProfileComponent clickOnAvatar(File file) {
+        profileAvatar.uploadFile(file);
         return this;
     }
 
     @Step("Verify Name equals: {name}")
-    public ProfileComponent verifyNameEquals(String name) {
+    public ProfileComponent verifyFirstNameEquals(String name) {
         firstNameFld.shouldHave(value(name));
         return this;
     }
@@ -64,5 +63,10 @@ public class ProfileComponent extends BasePage<ProfileComponent> {
         return this;
     }
 
+    @Step("Verify Username equals: {username}")
+    public ProfileComponent verifyUsernameEquals(String username) {
+        userName.shouldHave(value(username));
+        return this;
+    }
 
 }

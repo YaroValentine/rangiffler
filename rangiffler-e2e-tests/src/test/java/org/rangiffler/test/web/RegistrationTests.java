@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 
-import static org.rangiffler.test.Tag.*;
+import static org.rangiffler.jupiter.Category.*;
 import static org.rangiffler.utils.DataUtils.generateRandomPassword;
 import static org.rangiffler.utils.DataUtils.generateRandomUsername;
 
-@DisplayName("WEB AUTH TESTS")
+@DisplayName("WEB: AUTH TESTS")
 public class RegistrationTests extends BaseWebTest {
 
     @Test

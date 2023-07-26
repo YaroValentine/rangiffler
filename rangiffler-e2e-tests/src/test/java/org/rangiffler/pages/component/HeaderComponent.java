@@ -9,11 +9,10 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class HeaderComponent extends BaseComponent<HeaderComponent> {
 
-    private final SelenideElement mainPageBtn = $("a[href*='main']");
-
     private final SelenideElement
-            friendsPageBtn = $("a[href*='friends']"),
+            mainPageBtn = $("img[alt='Rangiffler logo']"),
             profileBtn = $(".header__avatar"),
+            friendsPageBtn = $("a[href*='friends']"),
             peopleBtn = $("a[href*='people']"),
             findsBtn = $("a[href*='friends']");
     ;

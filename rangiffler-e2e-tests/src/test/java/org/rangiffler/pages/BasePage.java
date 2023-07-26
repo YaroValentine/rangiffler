@@ -2,6 +2,7 @@ package org.rangiffler.pages;
 
 import io.qameta.allure.Step;
 import org.rangiffler.pages.component.MenuComponent;
+import org.rangiffler.pages.component.PhotoComponent;
 
 public abstract class BasePage<T extends BasePage> {
 
@@ -11,8 +12,9 @@ public abstract class BasePage<T extends BasePage> {
     private LoginPage loginPage;
     private RegistrationPage registrationPage;
     private MenuComponent menuComponent;
+    private PhotoComponent photoComponent;
 
-    @Step("Check that Page loaded")
+    @Step("Verify Page loaded")
     public abstract T verifyPageLoaded();
 
     public YourTravelsPage travelsPage() {
@@ -35,7 +37,8 @@ public abstract class BasePage<T extends BasePage> {
         return registrationPage == null ? new RegistrationPage() : registrationPage;
     }
 
-    public MenuComponent navigation() {
-        return menuComponent == null ? new MenuComponent() : menuComponent;
+    public PhotoComponent photoComponent() {
+        return photoComponent == null ? new PhotoComponent() : photoComponent;
     }
+
 }
