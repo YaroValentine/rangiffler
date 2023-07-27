@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class UsersQueueExtension implements
+public class UsersQueueExtension extends BaseExtension implements
         BeforeEachCallback,
         AfterTestExecutionCallback,
         ParameterResolver {
@@ -91,12 +91,6 @@ public class UsersQueueExtension implements
                 .get(testId);
 
         return user.values().iterator().next();
-    }
-
-    private String getTestId(ExtensionContext context) {
-        return Objects
-                .requireNonNull(context.getRequiredTestMethod().getAnnotation(AllureId.class))
-                .value();
     }
 
     private static UserJson userJson(String userName, String password) {

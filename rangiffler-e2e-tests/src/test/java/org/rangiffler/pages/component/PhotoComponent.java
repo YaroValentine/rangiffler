@@ -1,6 +1,5 @@
 package org.rangiffler.pages.component;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
@@ -10,8 +9,6 @@ import org.rangiffler.pages.YourTravelsPage;
 import org.rangiffler.utils.DataUtils;
 
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static org.rangiffler.utils.TestUtils.selectRandomUnique;
 
@@ -79,7 +76,6 @@ public class PhotoComponent extends BaseComponent<PhotoComponent> {
 
     @Step("Set Description '{description}'")
     public PhotoComponent setDescription(String description) {
-        Selenide.sleep(500);
         descriptionFld.shouldBe(editable).clear();
         descriptionFld.setValue(description);
         return this;
@@ -122,7 +118,7 @@ public class PhotoComponent extends BaseComponent<PhotoComponent> {
     public void verifyCanChangeDescription() {
         String oldDescription = getCurrentDescription();
         clickEditPhoto();
-        setDescription(DataUtils.generateRandomSentence(10));
+        setDescription(DataUtils.generateRandomSentence(5));
         clickSavePhoto();
         new YourTravelsPage().openFirstPhoto();
         String newDescription = getCurrentDescription();

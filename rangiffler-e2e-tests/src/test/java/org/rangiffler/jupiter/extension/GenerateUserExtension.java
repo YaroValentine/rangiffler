@@ -7,16 +7,18 @@ import org.junit.jupiter.api.extension.*;
 
 import java.util.Objects;
 
-public class GenerateUserExtension implements BeforeEachCallback, ParameterResolver {
+public class GenerateUserExtension extends BaseExtension implements
+        BeforeEachCallback,
+        AfterEachCallback,
+        ParameterResolver
+{
 
     public static ExtensionContext.Namespace NAMESPACE = ExtensionContext.Namespace
             .create(GenerateUserExtension.class);
-
-
     private static final GenerateUserService generateUserService = new GenerateUserService();
 
     @Override
-    public void beforeEach(ExtensionContext context) throws Exception {
+    public void beforeEach(ExtensionContext context) {
         GenerateUser annotation = context.getRequiredTestMethod()
                 .getAnnotation(GenerateUser.class);
 
@@ -37,9 +39,9 @@ public class GenerateUserExtension implements BeforeEachCallback, ParameterResol
         return extensionContext.getStore(NAMESPACE).get(getTestId(extensionContext), UserJson.class);
     }
 
-    private String getTestId(ExtensionContext context) {
-        return Objects
-                .requireNonNull(context.getRequiredTestMethod().getAnnotation(AllureId.class))
-                .value();
+
+    @Override
+    public void afterEach(ExtensionContext context) throws Exception {
+
     }
 }

@@ -19,13 +19,11 @@ import org.openqa.selenium.Cookie;
 import java.util.Objects;
 
 import static org.apache.commons.lang3.ArrayUtils.isEmpty;
+import static org.rangiffler.config.InitConfig.CFG;
 
-public class ApiLoginExtension implements BeforeEachCallback, AfterTestExecutionCallback {
-
-    protected static final Config CFG = Config.getConfig();
+public class ApiLoginExtension extends BaseExtension implements BeforeEachCallback, AfterTestExecutionCallback {
 
     private static final GenerateUserService generateUserService = new GenerateUserService();
-
     private static final AuthClient authClient = new AuthRestClient();
     private static final String JSESSIONID = "JSESSIONID";
 
@@ -85,9 +83,4 @@ public class ApiLoginExtension implements BeforeEachCallback, AfterTestExecution
         WebDriverRunner.getWebDriver().manage().addCookie(jssesionIdCookie);
     }
 
-    private String getTestId(ExtensionContext context) {
-        return Objects
-                .requireNonNull(context.getRequiredTestMethod().getAnnotation(AllureId.class))
-                .value();
-    }
 }
