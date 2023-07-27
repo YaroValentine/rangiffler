@@ -10,7 +10,7 @@ public class DockerConfig implements Config {
     static {
         Configuration.browser = "chrome";
         Configuration.browserVersion = "100.0";
-        Configuration.remote = "http://selenoid:4444/wd/hub";
+//        Configuration.remote = "http://selenoid:4444/wd/hub";
         Configuration.browserSize = "1920x1080";
         Configuration.timeout = 10000;
     }

@@ -17,7 +17,7 @@ public class YourTravelsPage extends BasePage<YourTravelsPage> {
             zoomInBtn = $("svg[data-testid='ZoomInIcon']"),
             zoomOutBtn = $("svg[data-testid='ZoomOutIcon']"),
             worldMap = $x("//figure");
-    private final ElementsCollection addedPhotos = $$(byXpath("//li[contains(@class, 'MuiImageListItem-root')]"));
+    private final ElementsCollection addedPhotos = $$("img[class^='photo']");
 
     @Override
     @Step("Verify Your Travels page loaded")

@@ -16,20 +16,20 @@ public class PhotoComponent extends BaseComponent<PhotoComponent> {
 
     //region Locators
     private final SelenideElement
-            photoComponent = $x("//div[contains(@class, 'css-2632uw')]"),
+            photoComponent = $(".MuiBox-root .MuiPaper-elevation"),
             editBtn = $("[data-testid='EditIcon']"),
             deleteBtn = $("[data-testid='DeleteOutlineIcon']"),
             closeBtn = $("[data-testid='CloseIcon']"),
             saveBtn = $("button[type='submit']"),
-            countryName = $x("//p[contains(@class, 'MuiTypography-gutterBottom css-18k87ye')]"),
-            countryDropDwn = $x("//div[contains(@class, 'css-jedpe8-MuiSelect-select-MuiInputBase')]"),
-            description = $x("//p[contains(@class, 'MuiTypography-body2 css-e784if')]"),
-            descriptionFld = $x("//textarea[contains(@class, 'MuiInputBase-inputSizeSmall css-12tl3rr') and @id=':rd:']");
-    private final ElementsCollection countryOptions = $$x("//li[contains(@class, 'MuiMenuItem-gutters css-kk1bwy')]");
+            countryName = $("p[class*='MuiTypography-h6']"),
+            countryDropDwn = $("[aria-haspopup=listbox]"),
+            description = $("p[class='MuiTypography-root MuiTypography-body2 css-68o8xu']"),
+            descriptionFld = $("textarea[id=':r6:']");
+    private final ElementsCollection countryOptions = $$("li[data-value]");
     //endregion
 
     public PhotoComponent() {
-        super($x("//div[contains(@class, 'css-2632uw')]"));
+        super($(".MuiBox-root .MuiPaper-elevation"));
     }
 
     @Override
