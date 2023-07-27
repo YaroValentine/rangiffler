@@ -180,8 +180,8 @@ services:
       - test-network
     dns_search: .
 
-  rangiffler-e-2-e:
-    container_name: rangiffler-e-2-e
+  rangiffler-e2e:
+    container_name: rangiffler-e2e
     image: razval/rangiffler-e2e-tests
     depends_on:
       frontend.rangiffler.dc:
@@ -194,7 +194,7 @@ services:
     container_name: allure
     image: frankescobar/allure-docker-service
     depends_on:
-      - rangiffler-e-2-e
+      - rangiffler-e2e
     environment:
       CHECK_RESULTS_EVERY_SECONDS: 3
       KEEP_HISTORY: 0
