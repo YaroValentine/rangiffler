@@ -123,7 +123,7 @@ from https://adoptium.net/en-GB/).
 
 Recommended Node.js - 18.13.0 (LTS)
 
-# Running Rangiffler locally в IDE:
+# Running Rangiffler locally in IDE:
 
 #### 1. Go to the Client directory.
 
@@ -192,13 +192,13 @@ Dmitriis-MacBook-Pro niffler % cd niffler
 ```
 #### 6. Start all services.
 
-Start services with tests
+- Start services with tests
 
 ```posh
 Dmitriis-MacBook-Pro  niffler % bash docker-compose-e2e.sh
 ```
 
-Start services without tests
+- Start services without tests
 
 ```posh
 Dmitriis-MacBook-Pro  niffler % bash docker-compose-dev.sh
