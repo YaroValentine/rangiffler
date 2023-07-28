@@ -139,8 +139,8 @@ services:
       - rangiffler-network
     dns_search: .
 
-  client.rangiffler.dc:
-    container_name: client.rangiffler.dc
+  frontend.rangiffler.dc:
+    container_name: frontend.rangiffler.dc
     image: razval/rangiffler-client:latest
     ports:
       - "80:80"
