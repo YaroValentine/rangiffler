@@ -5,9 +5,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
+import org.rangiffler.jupiter.annotation.GenerateUser;
+import org.rangiffler.model.UserJson;
 
 import static org.rangiffler.jupiter.Category.*;
-import static org.rangiffler.utils.DataUtils.*;
+import static org.rangiffler.utils.DataUtils.generateRandomPassword;
+import static org.rangiffler.utils.DataUtils.generateRandomUsername;
 
 @DisplayName("WEB: AUTH TESTS")
 public class LoginTests extends BaseWebTest {

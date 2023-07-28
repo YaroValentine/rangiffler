@@ -6,7 +6,7 @@ import java.util.Properties;
 public class Property {
 
     private static Properties loadFromFile(String filename) {
-        java.util.Properties properties = new java.util.Properties();
+        Properties properties = new Properties();
         try {
             properties.load(Property.class.getClassLoader().getResourceAsStream("config/" + filename + ".properties"));
         } catch (IOException e) {

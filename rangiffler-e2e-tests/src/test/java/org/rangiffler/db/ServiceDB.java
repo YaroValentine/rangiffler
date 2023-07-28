@@ -1,7 +1,8 @@
 package org.rangiffler.db;
 
 import org.apache.commons.lang3.StringUtils;
-import org.rangiffler.config.Config;
+
+import static org.rangiffler.config.InitConfig.CFG;
 
 public enum ServiceDB {
 
@@ -18,8 +19,8 @@ public enum ServiceDB {
 
     public String getJdbcUrl() {
         return String.format(jdbcUrl,
-                Config.getConfig().getDBHost(),
-                Config.getConfig().getDBPort()
+                CFG.getDBHost(),
+                CFG.getDBPort()
         );
     }
 
