@@ -4,14 +4,14 @@ Welcome Traveler!
 You've found a perfect place to share with friends your most adventurous photos 
 from the places you've been.
 
-Meet Rangiffler, a user-friendly app that lets you collect and arrange your travel images. 
+Meet Rangiffler, a username-friendly app that lets you collect and arrange your travel images. 
 Share your thoughts in each of your entry.
-Add friends from our user list and explore their posts. 
+Add friends from our username list and explore their posts. 
 Use our interactive map feature to keep track of countries you've visited and
 lights up on the map, letting you sort your photos by 
 country with a simple click.
 
-# Technologies
+## Technologies
 
 - [Spring Authorization Server](https://spring.io/projects/spring-authorization-server)
 - [Spring OAuth 2.0 Resource Server](https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/index.html)
@@ -26,9 +26,7 @@ country with a simple click.
 - [React](https://ru.reactjs.org/docs/getting-started.html)
 - [Apache Kafka](https://developer.confluent.io/quickstart/kafka-docker/)
 - [Thymeleaf](https://www.thymeleaf.org/)
-- [Jakarta Bean Validation](https://beanvalidation.org/)
-- [Jakarta JAXB](https://eclipse-ee4j.github.io/jaxb-ri/)
-- [JUnit 5 (Extensions, Resolvers, etc)](https://junit.org/junit5/docs/current/user-guide/)
+- [JUnit 5 (Extensions, Resolvers, etc)](https://junit.org/junit5/docs/current/username-guide/)
 - [Retrofit 2](https://square.github.io/retrofit/)
 - [Allure](https://docs.qameta.io/allure/)
 - [Selenide](https://selenide.org/)
@@ -38,21 +36,21 @@ country with a simple click.
 - [Gradle 7.6](https://docs.gradle.org/7.6/release-notes.html)
 - And more
 
-# Distributed Title System Diagram
+## Distributed File System Diagram
 ![Rangiffler.png](images%2FRangiffler.png)
 
 **Minimum requirements to start working with Rangiffler**
 
 Ports need for Rangiffler to work:
 
-|  Serice  | Port | 
-|:--------:|:----:| 
-|   AUTH   | 9000 |
-| GATEWAY  | 8080 |
-| USERDATA | 9010 |
-|   GEO    | 9020, gRPC:9021  |
-|  PHOTOS  | 9030, gRPC:9031  |
-| FRONTEND | 3001  |
+|      Service | Port            | 
+|------------:|:----------------| 
+|    FRONTEND | 3001            |
+|        AUTH | 9000            |
+|     GATEWAY | 8080            |
+|    USERDATA | 9010            |
+|         GEO | 9020, gRPC:9021 |
+|      PHOTOS | 9030, gRPC:9031 |
 
 #### 1. Install docker (if not installed)
 
@@ -69,7 +67,7 @@ After installing and starting the Docker daemon, you need to ensure that the Doc
 are working, for example docker -v:
 
 ```posh
-user ~ % docker -v
+docker -v
 Docker version 20.10.14, build a224086
 ```
 
@@ -110,7 +108,7 @@ docker run --name=kafka -e KAFKA_BROKER_ID=1 \
 Verity java version:
 
 ```posh
-user ~ % java -version
+java -version
 openjdk version "19.0.1" 2022-10-18
 OpenJDK Runtime Environment Homebrew (build 19.0.1)
 ```
@@ -123,19 +121,19 @@ from https://adoptium.net/en-GB/).
 
 Recommended Node.js - 18.13.0 (LTS)
 
-# Running Rangiffler locally in IDE:
+## Running Rangiffler locally in IDE:
 
-#### 1. Go to the Client directory.
+#### 1. Go to the rangiffler-client directory.
 
 ```posh
-user rangiffler % cd rangiffler-client
+cd rangiffler-client
 ```
 
 #### 2. Launch the frontend (first update the dependencies).
 
 ```posh
-user rangiffler-frontend % npm i
-user rangiffler-frontend % npm run build:dev
+npm i
+npm run
 ```
 
 #### 3. Set the run configuration for all rangiffler-* services - Active profiles local.
@@ -143,19 +141,24 @@ user rangiffler-frontend % npm run build:dev
 To do this, go to the Run menu -> Edit Configurations -> select the main class -> specify Active profiles: local.
 [Instruction](https://stackoverflow.com/questions/39738901/how-do-i-activate-a-spring-boot-profile-when-running-from-intellij).
 
-#### 4. Start all Rangiffler services using Gradle or the Run command in the IDE:
+#### 4. Start all Rangiffler services using Gradle or the Run command in the IDE in every service directory:
 
 ```posh
-user rangiffler % cd rangiffler-auth
-user rangiffler-auth % gradle bootRun --args='--spring.profiles.active=local'
+gradle bootRun --args='--spring.profiles.active=local'
 ```
+
+- Auth
+- Gateway
+- Userdata
+- Geo
+- Photos
 
 Or simply by going to the main class of every RangifflerServiceApplication and selecting run in IDE 
 (making sure the previous step has been completed).
 
 The frontend will be available at http://127.0.0.1:3001/
 
-# Running Rangiffler in Docker:
+## Running Rangiffler in Docker:
 
 #### 1. Create a free account at https://hub.docker.com/ (if you don't have one already).
 
@@ -164,12 +167,12 @@ The frontend will be available at http://127.0.0.1:3001/
 #### 3. Perform a docker login with the created access_token.
 
 #### 4. Add an alias for the Docker-name in the etc/hosts file.
-- frontend:  127.0.0.1 frontend.niffler.dc,
-- auth:      127.0.0.1 auth.niffler.dc
-- gateway:   127.0.0.1 gateway.niffler.dc
+- frontend:  127.0.0.1 frontend.rangiffler.dc,
+- auth:      127.0.0.1 auth.rangiffler.dc
+- gateway:   127.0.0.1 gateway.rangiffler.dc
 
 ```posh
-user rangiffler % vi /etc/hosts
+vi /etc/hosts
 ```
 
 ```posh
@@ -180,38 +183,38 @@ user rangiffler % vi /etc/hosts
 # when the system is booting.  Do not change this entry.
 ##
 127.0.0.1       localhost
-127.0.0.1       frontend.niffler.dc
-127.0.0.1       auth.niffler.dc
-127.0.0.1       gateway.niffler.dc
+127.0.0.1       frontend.rangiffler.dc
+127.0.0.1       auth.rangiffler.dc
+127.0.0.1       gateway.rangiffler.dc
 ```
 
 #### 5. Go to the root directory of the project.
 
 ```posh
-Dmitriis-MacBook-Pro niffler % cd niffler
+cd rangiffler
 ```
 #### 6. Start all services.
 
-- Start services with tests
+- Start with tests
 
 ```posh
-Dmitriis-MacBook-Pro  niffler % bash docker-compose-e2e.sh
+bash docker-compose-e2e.sh
 ```
 
-- Start services without tests
+- Start without tests
 
 ```posh
-Dmitriis-MacBook-Pro  niffler % bash docker-compose-dev.sh
+bash docker-compose-dev.sh
 ```
-Rangiffler, when running in Docker, will work for you at the address http://niffler-frontend/
+When running in Docker, Rangiffler will be available at the address http://rangiffler-frontend/
 *IMPORTANT!* Only the following ports will be available to you from the docker-network:
--Port 3001 (all requests from it are redirected by nginx to the frontend)
--Port 9000 (niffler-auth service)
--Port 8080 (niffler-gateway service)
+- Port 3001 (all requests from it are redirected by nginx to the frontend)
+- Port 9000 (rangiffler-auth service)
+- Port 8080 (rangiffler-gateway service)
 
 #### 7. Selenoid UI is available at: http://localhost:9090/
 
-#### 8. Allure доступен по адресу: http://127.0.0.1:5050/allure-docker-service/projects/niffler-e2e-tests/reports/latest/index.html#
+#### 8. Allure is available at: http://127.0.0.1:5050/allure-docker-service/projects/niffler-e2e-tests/reports/latest/index.html
 
 *Enjoy the Rangiffler*
 ![logo-rangiffler.svg](images%2Flogo-rangiffler.svg)
