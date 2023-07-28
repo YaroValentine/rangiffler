@@ -24,7 +24,7 @@ public enum EmfProvider {
             properties.put("hibernate.connection.url", service.p6SpyUrl());
 
             return new ThreadLocalEmf(Persistence.createEntityManagerFactory(
-                    "niffler-persistence-unit-name",
+                    "rangiffler-persistence-unit-name",
                     properties
             ));
         });

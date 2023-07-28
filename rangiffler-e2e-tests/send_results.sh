@@ -5,7 +5,7 @@ ALLURE_RESULTS_DIRECTORY='build/allure-results'
 # This url is where the Allure container is deployed. We are using localhost as example
 ALLURE_SERVER='http://allure:5050'
 # Project ID according to existent projects in your Allure container - Check endpoint for project creation >> `[POST]/projects`
-PROJECT_ID='niffler-e2e-tests'
+PROJECT_ID='rangiffler-e2e-tests'
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 FILES_TO_SEND=$(ls -dp $DIR/$ALLURE_RESULTS_DIRECTORY/* | grep -v /$)

@@ -5,10 +5,10 @@ import org.rangiffler.config.Config;
 
 public enum ServiceDB {
 
-    RANGIFFLER_AUTH("jdbc:mysql://%s:%d/niffler-auth"),
-    RANGIFFLER_USERDATA("jdbc:mysql://%s:%d/niffler-userdata"),
-    RANGIFFLER_GEO("jdbc:mysql://%s:%d/niffler-geo"),
-    RANGIFFLER_PHOTOS("jdbc:mysql://%s:%d/niffler-photos");
+    RANGIFFLER_AUTH("jdbc:mysql://%s:%d/rangiffler-auth"),
+    RANGIFFLER_USERDATA("jdbc:mysql://%s:%d/rangiffler-userdata"),
+    RANGIFFLER_GEO("jdbc:mysql://%s:%d/rangiffler-geo"),
+    RANGIFFLER_PHOTOS("jdbc:mysql://%s:%d/rangiffler-photos");
 
     private final String jdbcUrl;
 

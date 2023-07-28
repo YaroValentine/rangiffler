@@ -83,6 +83,6 @@ public class GenerateUserService {
                 }
             }
         }
-        throw new IllegalStateException("Can`t obtain user from niffler-userdata");
+        throw new IllegalStateException("Can`t obtain user from rangiffler-userdata");
     }
 }

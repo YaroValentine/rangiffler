@@ -214,7 +214,7 @@ When running in Docker, Rangiffler will be available at the address http://rangi
 
 #### 7. Selenoid UI is available at: http://localhost:9090/
 
-#### 8. Allure is available at: http://127.0.0.1:5050/allure-docker-service/projects/niffler-e2e-tests/reports/latest/index.html
+#### 8. Allure is available at: http://127.0.0.1:5050/allure-docker-service/projects/rangiffler-e2e-tests/reports/latest/index.html
 
 *Enjoy the Rangiffler*
 ![logo-rangiffler.svg](images%2Flogo-rangiffler.svg)
